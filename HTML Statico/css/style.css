@@ -2,6 +2,23 @@ body {
     font-family: Helvetica, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #eee;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button:hover, button:hover * {
+    text-decoration: none;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .login_reg_page {
@@ -54,7 +71,7 @@ body {
 
 .page {
     display: flex;
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -62,7 +79,6 @@ body {
 .sidebar {
     width: 20%;
     padding-right: 20px;
-    background-color: #15202b;
     border-right: 1px solid #2f3336;
 }
 
@@ -76,10 +92,11 @@ body {
     font-size: 18px;
     color: #8899a6;
     cursor: pointer;
+    text-align: center;
 }
 
-.sidebar__nav-item:hover {
-    color: #ffffff;
+.sidebar__nav-item a:hover {
+    color: #565656;
 }
 
 .content {
@@ -116,6 +133,7 @@ body {
     height: 48px;
     border-radius: 50%;
     margin-right: 15px;
+    object-fit: cover;
 }
 
 .post__author {
@@ -123,7 +141,7 @@ body {
 }
 
 .post__body {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .post__title {
@@ -136,10 +154,11 @@ body {
     height: auto;
     border-radius: 8px;
     margin-bottom: 15px;
+    object-fit:cover
 }
 
 .post__snippet {
-    font-size: 16px;
+    font-size: 18px;
     margin-bottom: 15px;
 }
 
@@ -150,31 +169,30 @@ body {
 
 .post__button {
     background-color: transparent;
-    color: #1da1f2;
+    color: #000;
     border: none;
     cursor: pointer;
     font-size: 16px;
     display: flex;
     align-items: center;
+    float: left;
+    width: 50%;
+    justify-content: center;
+    font-size: 17px;
 }
 
 .post__button:hover {
     text-decoration: underline;
 }
-
+.post__likes, .post__comments {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+}
 .right-sidebar {
     width: 20%;
     padding-left: 20px;
-    background-color: #15202b;
     border-left: 1px solid #2f3336;
-}
-
-.right-sidebar__trending {
-    background-color: #192734;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    color: #ffffff;
 }
 
 .right-sidebar__title {
@@ -191,4 +209,24 @@ body {
 .right-sidebar__item:hover {
     color: #1da1f2;
     cursor: pointer;
+}
+
+.search {
+    width: 100%;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid #2f3336;
+    background-color: #f4f4f4;
+    color: #000;
+    font-size: 16px;
+    outline: none;
+}
+
+.search::placeholder {
+    color: #8899a6;
+}
+
+.search:focus {
+    border-color: #1da1f2;
+    color: #000;
 }
