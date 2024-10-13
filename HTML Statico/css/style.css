@@ -11,13 +11,15 @@ body {
     height: 100vh;
     margin: 0;
 }
-.login-form {
+.login_reg_form {
+    width: 25%;
+    min-width: 300px;
     padding: 20px;
     border: 1px solid darkcyan;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-.login-form input {
+.login_reg_form input, select {
     box-sizing: border-box;
     width: 100%;
     padding: 10px;
@@ -25,7 +27,8 @@ body {
     border: 1px solid lightgray;
     border-radius: 5px;
 }
-.login-form button {
+
+.login_reg_form button {
     background-color: white;
     width: 25%;
     padding: 10px;
@@ -33,14 +36,13 @@ body {
     border-radius: 5px;
 }
 
-.login-form button:hover,
-.login-form button:active {
-    border: none;
+.login_reg_form button:hover,
+.login_reg_form button:active {
     color: white;
     background-color: darkcyan;
 }
 
-.login-form a {
+.login_reg_form a {
     text-decoration: none;
 }
 
