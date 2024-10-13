@@ -1,0 +1,153 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.page {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.sidebar {
+    width: 20%;
+    padding-right: 20px;
+    background-color: #15202b;
+    border-right: 1px solid #2f3336;
+}
+
+.sidebar__nav {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar__nav-item {
+    padding: 15px 0;
+    font-size: 18px;
+    color: #8899a6;
+    cursor: pointer;
+}
+
+.sidebar__nav-item:hover {
+    color: #ffffff;
+}
+
+.content {
+    width: 60%;
+    padding: 0 20px;
+}
+
+.content__header {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #2f3336;
+    margin-bottom: 20px;
+}
+
+.content__header h1 {
+    font-size: 24px;
+    color: #ffffff;
+    margin: 0;
+}
+
+.post {
+    background-color: #15202b;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #2f3336;
+}
+
+.post__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.post__profile-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.post__author {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.post__body {
+    margin-bottom: 15px;
+}
+
+.post__title {
+    font-size: 20px;
+    color: #ffffff;
+    margin: 0 0 15px;
+}
+
+.post__image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.post__snippet {
+    color: #8899a6;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.post__footer {
+    display: flex;
+    gap: 20px;
+}
+
+.post__button {
+    background-color: transparent;
+    color: #1da1f2;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.post__button:hover {
+    text-decoration: underline;
+}
+
+.right-sidebar {
+    width: 20%;
+    padding-left: 20px;
+    background-color: #15202b;
+    border-left: 1px solid #2f3336;
+}
+
+.right-sidebar__trending {
+    background-color: #192734;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.right-sidebar__title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.right-sidebar__item {
+    padding: 10px 0;
+    font-size: 16px;
+    border-bottom: 1px solid #2f3336;
+}
+
+.right-sidebar__item:hover {
+    color: #1da1f2;
+    cursor: pointer;
+}
