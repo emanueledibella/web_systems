@@ -1,9 +1,53 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #000;
-    color: #ffffff;
+    font-family: Helvetica, sans-serif;
     margin: 0;
     padding: 0;
+}
+
+.login_reg_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.login-form {
+    padding: 20px;
+    border: 1px solid darkcyan;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.login-form input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+.login-form button {
+    background-color: white;
+    width: 25%;
+    padding: 10px;
+    border: 1px solid darkcyan;
+    border-radius: 5px;
+}
+
+.login-form button:hover,
+.login-form button:active {
+    border: none;
+    color: white;
+    background-color: darkcyan;
+}
+
+.login-form a {
+    text-decoration: none;
+}
+
+.button_div {
+    margin-top: 10px;
+    display: flex;
+    justify-content: right;
 }
 
 .page {
@@ -49,16 +93,14 @@ body {
 
 .content__header h1 {
     font-size: 24px;
-    color: #ffffff;
     margin: 0;
 }
 
 .post {
-    background-color: #15202b;
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
-    border: 1px solid #2f3336;
+    border: 1px solid darkcyan;
 }
 
 .post__header {
@@ -76,7 +118,6 @@ body {
 
 .post__author {
     font-weight: bold;
-    color: #ffffff;
 }
 
 .post__body {
@@ -85,7 +126,6 @@ body {
 
 .post__title {
     font-size: 20px;
-    color: #ffffff;
     margin: 0 0 15px;
 }
 
@@ -97,7 +137,6 @@ body {
 }
 
 .post__snippet {
-    color: #8899a6;
     font-size: 16px;
     margin-bottom: 15px;
 }
