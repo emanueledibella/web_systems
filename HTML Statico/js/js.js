@@ -285,6 +285,123 @@ const loadComment = async (postId) => {
     }
 }
 
+const loadPost = async (postId) => {
+    // const response = await fetch(`/post/${postId}`);
+    // const post = await response.json();
+
+    const post = {
+        id: 1,
+        authorImage: "https://randomuser.me/api/portraits/men/1.jpg",
+        authorName: "John Doe",
+        image: "https://picsum.photos/200/300",
+        title: "First Post",
+        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc.",
+        likesCount: 10,
+        commentsCount: 5
+    };
+    
+    
+    const postContainer = document.getElementById('postFull');
+    // header
+    const headerElement = document.createElement('div');
+    headerElement.classList.add('post__header');
+    const authorImage = document.createElement('img');
+    authorImage.src = post.authorImage;
+    authorImage.classList.add('post__profile-image');
+    const authorName = document.createElement('span');
+    authorName.classList.add('post__author');
+    authorName.textContent = post.authorName;
+    
+    headerElement.appendChild(authorImage);
+    headerElement.appendChild(authorName);
+
+    // body
+    const bodyElement = document.createElement('div');
+    bodyElement.classList.add('post__body');
+    const titleElement = document.createElement('h2');
+    titleElement.classList.add('post__title');
+    titleElement.textContent = post.title;
+    let imageElement;
+    if (post.image) {
+        imageElement = document.createElement('img');
+        imageElement.src = post.image;
+        imageElement.classList.add('post__image');
+    }
+    const contentElement = document.createElement('p');
+    contentElement.classList.add('post__content');
+    contentElement.textContent = post.content;
+
+    bodyElement.appendChild(titleElement);
+    if (post.image) {
+        bodyElement.appendChild(imageElement);
+    }
+    bodyElement.appendChild(contentElement);
+
+    // footer
+    const footerElement = document.createElement('div');
+    footerElement.classList.add('post__footer');
+
+    // like
+    const likeElement = document.createElement('div');
+    likeElement.classList.add('post__button', 'post__button--like', 'clearfix');
+    likeElement.dataset.postid = post.id;
+    likeElement.id = 'post_like';
+    const likeIcon = document.createElement('i');
+    likeIcon.classList.add('fa-regular', 'fa-thumbs-up');
+    const likeCount = document.createElement('span');
+    likeCount.classList.add('post__likes');
+    likeCount.textContent = post.likesCount;
+    
+    likeElement.appendChild(likeIcon);
+    likeElement.appendChild(likeCount);
+
+    // comment
+    const commentElement = document.createElement('div');
+    commentElement.classList.add('post__button', 'post__button--comment', 'clearfix');
+    commentElement.dataset.postid = post.id;
+    commentElement.id = 'post_comment';
+    const commentIcon = document.createElement('i');
+    commentIcon.classList.add('fa-regular', 'fa-comment');
+    const commentCount = document.createElement('span');
+    commentCount.classList.add('post__comments');
+    commentCount.textContent = post.commentsCount;
+
+    commentElement.appendChild(commentIcon);
+    commentElement.appendChild(commentCount);
+
+    footerElement.appendChild(likeElement);
+    footerElement.appendChild(commentElement);
+
+    postContainer.appendChild(headerElement);
+    postContainer.appendChild(bodyElement);
+    postContainer.appendChild(footerElement);
+}
+
+const post = async () => {
+    const title = document.querySelector('#post_title').value;
+    const content = document.querySelector('#post_text').value;
+    const image = document.querySelector('#post_image').files[0];
+
+    if (!title || !content) {
+        alert('Compila almeno il titolo e il contenuto del post');
+        return;
+    }
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('image', image);
+
+    const response = await fetch('/post', {
+        method: 'POST',
+        body: formData
+    });
+
+    const data = await response.json();
+    
+    window.location.href = `/post/${data.id}`;
+}
+
+
 // MAIN ON LOAD
 document.addEventListener('DOMContentLoaded', function() {
     const homepage = document.getElementById('homepage');
@@ -294,6 +411,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (postPage) {
+        loadPost(postPage.dataset.postid);
         loadComment(postPage.dataset.postid);
     }
 
@@ -314,6 +432,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const comment = document.querySelector(`#comment_input`).value;
             const commentFile = document.querySelector(`#comment_image`).files[0];
             postComment(event.target.dataset.postid, comment, commentFile);
+        }
+
+        if (event.target && event.target.id == 'post') {
+            post();
         }
     });
     

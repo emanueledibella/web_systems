@@ -34,8 +34,11 @@
         </div>
         <div class="content">
             <div class="create-post">
-                <form class="create-post__form" id="create_post_form">
+                <div class="create-post__form" id="create_post_form">
                     <div class="create-post__field">
+                        <h2>Titolo</h2>
+                        <input type="text" name="title" id="post_title" class="create-post__textarea" placeholder="Titolo...">
+                        <h2>Post</h2>
                         <textarea class="create-post__textarea" id="post_text" name="post_text" placeholder="What's happening?" rows="4"></textarea>
                     </div>
                     <div class="create-post__actions">
@@ -43,9 +46,9 @@
                         <label for="post_image" class="create-post__file-label">
                             <i class="fa-regular fa-image"></i> Aggiungi immagine
                         </label>
-                        <button type="submit" class="create-post__submit-button" id="post">Pubblica</button>
+                        <button class="create-post__submit-button" id="post">Pubblica</button>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
         <div class="right-sidebar">
