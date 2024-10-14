@@ -95,7 +95,8 @@ button:hover, button:hover * {
     text-align: center;
 }
 
-.sidebar__nav-item a:hover {
+.sidebar__nav-item a:hover,
+.sidebar__nav-item a.active {
     color: #565656;
 }
 
@@ -189,6 +190,7 @@ button:hover, button:hover * {
     align-items: center;
     margin-left: 5px;
 }
+
 .right-sidebar {
     width: 20%;
     padding-left: 20px;
@@ -229,4 +231,134 @@ button:hover, button:hover * {
 .search:focus {
     border-color: #1da1f2;
     color: #000;
+}
+
+.content__header {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #2f3336;
+    margin-bottom: 20px;
+}
+
+.content__header h1 {
+    font-size: 24px;
+    color: #ffffff;
+    margin: 0;
+}
+
+.post--full {
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #2f3336;
+}
+
+.post__content {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+
+.comments {
+    margin-top: 30px;
+}
+
+.comments__title {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.comments__list {
+    margin-bottom: 20px;
+}
+
+.comment {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #2f3336;
+}
+
+.comment__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.comment__profile-image {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.comment__author {
+    font-weight: bold;
+    color: #000;
+}
+
+.comment__text {
+    color: #000;
+    font-size: 16px;
+}
+
+.comments__form {
+    display: flex;
+    gap: 10px;
+}
+
+.comments__form__container {
+    width: 100%;
+    position: relative;
+}
+
+.comments__input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid #2f3336;
+    color: #8899a6;
+    font-size: 16px;
+    outline: none;
+    width: 90%;
+    padding-left: 50px;
+}
+
+.comments__input::placeholder {
+    color: #8899a6;
+}
+
+.comments__input:focus {
+    border-color: #1da1f2;
+    color: #ffffff;
+}
+
+.comments__button--image {
+    background-color: transparent;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 25px;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+}
+
+.comments__button--image:hover {
+    color: #9c9c9c;
+}
+
+.comments__button {
+    background-color: #1da1f2;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.comments__button:hover {
+    background-color: #1991da;
 }

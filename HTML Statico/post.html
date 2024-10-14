@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post - Y</title>
+    <link rel="icon" href="./img/favicon.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/10f3fe22ee.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="page">
+        <div class="sidebar">
+            <ul class="sidebar__nav">
+                <li class="sidebar__nav-item">
+                    <a href="home.html">
+                        <i class="fa-solid fa-house"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="sidebar__nav-item">
+                    <a href="profile.html">
+                        <i class="fa-solid fa-user"></i>
+                        Profilo
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="post post--full" id="post_1">
+                <div class="post__header">
+                    <img src="./img/elon.jpeg" alt="Profile Image" class="post__profile-image">
+                    <span class="post__author">Elon Musk</span>
+                </div>
+                <div class="post__body">
+                    <h2 class="post__title">We Robot</h2>
+                    <img src="./img/werobot.jpeg" alt="Post Image" class="post__image">
+                    <p class="post__content">We are Ready!</p>
+                </div>
+                <div class="post__footer">
+                    <button class="post__button post__button--like" data-postid="1" id="post_like">
+                        <i class="fa-regular fa-thumbs-up"></i>
+                        <span class="post__likes">0</span>
+                    </button>
+                    <button class="post__button post__button--comment" data-postid="1" id="post_comment">
+                        <i class="fa-regular fa-comment"></i>
+                        <span class="post__comments">0</span>
+                    </button>
+                </div>
+            </div>
+            <div class="comments">
+                <h3 class="comments__title">Commenti</h3>
+                <div class="comments__list">
+                    <!-- Example comment -->
+                    <div class="comment">
+                        <div class="comment__header">
+                            <img src="./img/user.png" alt="Profile Image" class="comment__profile-image">
+                            <span class="comment__author">John Doe</span>
+                        </div>
+                        <div class="comment__body">
+                            <p class="comment__text">Amazing post, Elon!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="comments__form">
+                    <div class="comments__form__container">
+                        <input type="text" class="comments__input" id="comment_input" placeholder="Commenta...">
+                        <button class="comments__button--image" id="comment_add_image">
+                            <i class="fa-regular fa-image"></i>
+                        </button>
+                    </div>
+                    <button class="comments__button" id="comment_submit">Pubblica</button>
+                </div>
+            </div>
+        </div>
+        <div class="right-sidebar">
+            <input type="text" id="search" class="search" name="search" placeholder="Cerca...">
+        </div>
+    </div>
+</body>
+</html>
