@@ -489,3 +489,25 @@ button:hover, button:hover * {
 .create-post__submit-button:hover {
     background-color: #1991da;
 }
+
+.user_info-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+#mod_form {
+    box-shadow: none;
+    border: none;
+    padding: 0;
+}
+
+.user_info {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.user_info-item {
+    font-size: 18px;
+    margin-bottom: 15px;
+}

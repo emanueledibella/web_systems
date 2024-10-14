@@ -3,25 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrazione</title>
+    <title>Registrati - Y</title>
+    <link rel="icon" href="./img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <div class="login_reg_page">
         <div class="login_reg_form">
+            <div class="center">
+                <img src="./img/favicon.png" alt="Logo" class="logo">
+            </div>
             <h2>Registrati</h2>
-            <h4>Inserisci i tuoi dati</h4>
-            <form action="#" method="post">
-                <input type="text" name="nome" placeholder="Nome" required>
-                <input type="text" name="cognome" placeholder="Cognome" required>
-                <select name="genere" id="">
-                    <option value="" disabled selected hidden>Genere</option>
-                    <option value="uomo">Uomo</option>
-                    <option value="donna">Donna</option>
-                    <option value="altro">Altro</option>
-                </select>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
+            <h4>Unisciti alla community di Y</h4>
+            <form action="/registrazione" method="post">
+                <div class="log_reg_form--field">
+                    <input type="text" name="nome" placeholder="Nome" required>
+                </div>
+                <div class="log_reg_form--field">
+                    <input type="text" name="cognome" placeholder="Cognome" required>
+                </div>
+                <div class="log_reg_form--field">
+                    <select name="genere" id="">
+                        <option value="" disabled selected hidden>Genere</option>
+                        <option value="uomo">Uomo</option>
+                        <option value="donna">Donna</option>
+                        <option value="altro">Altro</option>
+                    </select>
+                </div>
+                <div class="log_reg_form--field">
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="log_reg_form--field">
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
                 <div class="button_div">
                     <button type="submit">Registrati</button>
                 </div>
