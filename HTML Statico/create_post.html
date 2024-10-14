@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post - Y</title>
+    <link rel="icon" href="./img/favicon.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/10f3fe22ee.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="page">
+        <div class="sidebar">
+            <ul class="sidebar__nav">
+                <li class="sidebar__nav-item">
+                    <a href="home.html">
+                        <i class="fa-solid fa-house"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="sidebar__nav-item">
+                    <a href="profile.html">
+                        <i class="fa-solid fa-user"></i>
+                        Profilo
+                    </a>
+                </li>
+                <li class="sidebar__nav-item sidebar__nav-item--button">
+                    <a href="create_post.html" class="sidebar__button">
+                        <button class="sidebar__button-publish">Pubblica</button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="create-post">
+                <form class="create-post__form" id="create_post_form">
+                    <div class="create-post__field">
+                        <textarea class="create-post__textarea" id="post_text" name="post_text" placeholder="What's happening?" rows="4"></textarea>
+                    </div>
+                    <div class="create-post__actions">
+                        <input type="file" id="post_image" class="create-post__file-input" accept="image/*">
+                        <label for="post_image" class="create-post__file-label">
+                            <i class="fa-regular fa-image"></i> Aggiungi immagine
+                        </label>
+                        <button type="submit" class="create-post__submit-button" id="post">Pubblica</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="right-sidebar">
+            <input type="text" id="search" class="search" name="search" placeholder="Cerca...">
+        </div>
+    </div>
+</body>
+</html>

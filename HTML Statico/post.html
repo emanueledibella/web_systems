@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,6 +22,11 @@
                     <a href="profile.html">
                         <i class="fa-solid fa-user"></i>
                         Profilo
+                    </a>
+                </li>
+                <li class="sidebar__nav-item sidebar__nav-item--button">
+                    <a href="create_post.html" class="sidebar__button">
+                        <button class="sidebar__button-publish">Pubblica</button>
                     </a>
                 </li>
             </ul>
@@ -58,6 +63,7 @@
                             <span class="comment__author">John Doe</span>
                         </div>
                         <div class="comment__body">
+                            <img src="./img/favicon.png" alt="Comment Image" class="comment__image">
                             <p class="comment__text">Amazing post, Elon!</p>
                         </div>
                     </div>
@@ -65,9 +71,10 @@
                 <div class="comments__form">
                     <div class="comments__form__container">
                         <input type="text" class="comments__input" id="comment_input" placeholder="Commenta...">
-                        <button class="comments__button--image" id="comment_add_image">
+                        <input type="file" id="comment_image" class="comment__file-input" accept="image/*">
+                        <label for="comment_image" class="comments__button--image" id="comment_add_image">
                             <i class="fa-regular fa-image"></i>
-                        </button>
+                        </label>
                     </div>
                     <button class="comments__button" id="comment_submit">Pubblica</button>
                 </div>
