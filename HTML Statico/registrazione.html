@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrati - Y</title>
     <link rel="icon" href="./img/favicon.png" type="image/x-icon">
+    <script src="./js/js.js"></script>
     <link rel="stylesheet" href="./css/style.css">
+    <script src="https://kit.fontawesome.com/10f3fe22ee.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="login_reg_page">
@@ -17,12 +19,21 @@
             <h4>Unisciti alla community di Y</h4>
             <form action="/registrazione" method="post">
                 <div class="log_reg_form--field">
+                    <span class="log_reg_form__field--icon">
+                        <i class="fas fa-user"></i>
+                    </span>
                     <input type="text" name="nome" placeholder="Nome" required>
                 </div>
                 <div class="log_reg_form--field">
+                    <span class="log_reg_form__field--icon">
+                        <i class="fas fa-user"></i>
+                    </span>
                     <input type="text" name="cognome" placeholder="Cognome" required>
                 </div>
                 <div class="log_reg_form--field">
+                    <span class="log_reg_form__field--icon">
+                        <i class="fa-solid fa-venus-mars"></i>
+                    </span>
                     <select name="genere" id="">
                         <option value="" disabled selected hidden>Genere</option>
                         <option value="uomo">Uomo</option>
@@ -31,9 +42,15 @@
                     </select>
                 </div>
                 <div class="log_reg_form--field">
+                    <span class="log_reg_form__field--icon">
+                        <i class="fas fa-envelope"></i>
+                    </span>
                     <input type="email" name="email" placeholder="Email" required>
                 </div>
                 <div class="log_reg_form--field">
+                    <span class="log_reg_form__field--icon">
+                        <i class="fas fa-lock"></i>
+                    </span>
                     <input type="password" name="password" placeholder="Password" required>
                 </div>
                 <div class="button_div">

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Y</title>
     <link rel="icon" href="./img/favicon.png" type="image/x-icon">
+    <script src="./js/js.js"></script>
     <script src="https://kit.fontawesome.com/10f3fe22ee.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -31,58 +32,58 @@
                 </li>
             </ul>
         </div>
-        <div class="content">
-            <a href="post.html?postid=1" class="post__link" data-postid="1">
-                <div class="post">
-                    <div class="post__header">
-                        <img src="./img/elon.jpeg" alt="Profile Image" class="post__profile-image">
-                        <span class="post__author">Elon Musk</span>
-                    </div>
-                    <div class="post__body">
-                        <h2 class="post__title">We Robot</h2>
-                        <img src="./img/werobot.jpeg" alt="Post Image" class="post__image">
-                        <p class="post__snippet">We are Ready!</p>
-                    </div>
+        <div class="content" id="homepage">
+                <div class="post" data-postid="1">
+                    <a href="post.html?postid=1" class="post__link">
+                        <div class="post__header">
+                            <img src="./img/elon.jpeg" alt="Profile Image" class="post__profile-image">
+                            <span class="post__author">Elon Musk</span>
+                        </div>
+                        <div class="post__body">
+                            <h2 class="post__title">We Robot</h2>
+                            <img src="./img/werobot.jpeg" alt="Post Image" class="post__image">
+                            <p class="post__snippet">We are Ready!</p>
+                        </div>
+                    </a>
                     <div class="post__footer">
-                        <button class="post__button post__button--like clearfix" data-postid="1" id="post_like">
+                        <div class="post__button post__button--like clearfix" data-postid="1" id="post_like">
                             <i class="fa-regular fa-thumbs-up"></i>
                             <span class="post__likes">0</span>
-                        </button>
-                        <button class="post__button post__button--comment clearfix" data-postid="1" id="post_comment">
+                        </div>
+                        <div class="post__button post__button--comment clearfix" data-postid="1" id="post_comment">
                             <i class="fa-regular fa-comment"></i>
                             <span class="post__comments">0</span>
-                        </button>
+                        </div>
                     </div>
                 </div>
-            </a>
 
-            <a href="post.html?postid=2" class="post__link" data-postid="2">
-                <div class="post">
-                    <div class="post__header">
-                        <img src="./img/spacex.jpg" alt="Profile Image" class="post__profile-image">
-                        <span class="post__author">SpaceX</span>
-                    </div>
-                    <div class="post__body">
-                        <h2 class="post__title">Starship booster</h2>
-                        <p class="post__snippet">
-                            Just inspected the Starship booster, which the arms have now placed back in its launch mount. Looks...
-                            <!-- Just inspected the Starship booster, which the arms have now placed back in its launch mount. Looks great!
-                            A few outer engine nozzles are warped from heating & some other minor issues, but these are easily addressed.
-                            Starship is designed to achieve reflight of its rocket -->
-                        </p>
-                    </div>
+                <div class="post" data-postid="2">
+                    <a href="post.html?postid=2" class="post__link">
+                        <div class="post__header">
+                            <img src="./img/spacex.jpg" alt="Profile Image" class="post__profile-image">
+                            <span class="post__author">SpaceX</span>
+                        </div>
+                        <div class="post__body">
+                            <h2 class="post__title">Starship booster</h2>
+                            <p class="post__snippet">
+                                Just inspected the Starship booster, which the arms have now placed back in its launch mount. Looks...
+                                <!-- Just inspected the Starship booster, which the arms have now placed back in its launch mount. Looks great!
+                                A few outer engine nozzles are warped from heating & some other minor issues, but these are easily addressed.
+                                Starship is designed to achieve reflight of its rocket -->
+                            </p>
+                        </div>
+                    </a>
                     <div class="post__footer">
-                        <button class="post__button post__button--like clearfix" data-postid="2" id="post_like">
+                        <div class="post__button post__button--like clearfix" data-postid="2" id="post_like">
                             <i class="fa-regular fa-thumbs-up"></i>
                             <span class="post__likes">0</span>
-                        </button>
-                        <button class="post__button post__button--comment clearfix" data-postid="2" id="post_comment">
+                        </div>
+                        <div class="post__button post__button--comment clearfix" data-postid="2" id="post_comment">
                             <i class="fa-regular fa-comment"></i>
                             <span class="post__comments">0</span>
-                        </button>
+                        </div>
                     </div>
                 </div>
-            </a>
 
         </div>
         <div class="right-sidebar">

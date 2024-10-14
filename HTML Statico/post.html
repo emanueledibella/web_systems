@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post - Y</title>
     <link rel="icon" href="./img/favicon.png" type="image/x-icon">
+    <script src="./js/js.js"></script>
     <script src="https://kit.fontawesome.com/10f3fe22ee.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -31,7 +32,7 @@
                 </li>
             </ul>
         </div>
-        <div class="content">
+        <div class="content" id="postFull" data-postid="1">
             <div class="post post--full" id="post_1">
                 <div class="post__header">
                     <img src="./img/elon.jpeg" alt="Profile Image" class="post__profile-image">
@@ -43,19 +44,19 @@
                     <p class="post__content">We are Ready!</p>
                 </div>
                 <div class="post__footer">
-                    <button class="post__button post__button--like" data-postid="1" id="post_like">
+                    <div class="post__button post__button--like" data-postid="1" id="post_like">
                         <i class="fa-regular fa-thumbs-up"></i>
                         <span class="post__likes">0</span>
-                    </button>
-                    <button class="post__button post__button--comment" data-postid="1" id="post_comment">
+                    </div>
+                    <div class="post__button post__button--comment" data-postid="1" id="post_comment">
                         <i class="fa-regular fa-comment"></i>
                         <span class="post__comments">0</span>
-                    </button>
+                    </div>
                 </div>
             </div>
             <div class="comments">
                 <h3 class="comments__title">Commenti</h3>
-                <div class="comments__list">
+                <div class="comments__list" id="comments_list">
                     <!-- Example comment -->
                     <div class="comment">
                         <div class="comment__header">
