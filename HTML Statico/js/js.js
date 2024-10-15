@@ -1,5 +1,13 @@
 const getPostsData = async () => {
-    // const postsJson = await fetch('posts.json');
+    //  const postsJson = await fetch('/posts/', 
+    //     {
+    //         method: 'GET',
+    //         query : {
+    //             limit: 10,
+    //             offset: 0
+    //         }
+    //     }
+    //  );
     // const posts = await postsJson.json();
     const posts = [
         {
@@ -31,15 +39,6 @@ const getPostsData = async () => {
     ];
     const postsContainer = document.getElementById('homepage');
     posts.forEach(post => {
-        // {
-        //     id
-        //     authorImage
-        //     authorName
-        //     image
-        //     snippet
-        //     likesCount
-        //     commentsCount
-        // }
         // container
         const postElement = document.createElement('div');
         postElement.dataset.postid = post.id;
@@ -406,6 +405,7 @@ const post = async () => {
 document.addEventListener('DOMContentLoaded', function() {
     const homepage = document.getElementById('homepage');
     const postPage = document.getElementById('postFull');
+
     if (homepage) {
         getPostsData();
     }
