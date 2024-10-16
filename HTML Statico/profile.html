@@ -35,46 +35,48 @@
         <div class="content">
             <h2>Le tue informazioni</h2>
             <div class="user_info-div">
-                <ul class="user_info">
-                    <li class="user_info-item">
-                        <label for="nome">Nome: </label>
-                        <span id="nome">Mario</span>
-                    </li>
-                    <li class="user_info-item">
-                        <label for="cognome">Cognome: </label>
-                        <span id="cognome">Rossi</span>
-                    </li>
-                    <li class="user_info-item">
-                        <label for="genere">Genere: </label>
-                        <span id="genere">Uomo</span>
-                    </li>
-                    <li class="user_info-item">
-                        <label for="email">Email: </label>
-                        <span id="email">example@example.com</span>
-                    </li>
-                    <p><br>Puoi modificare anche una sola delle tue informazioni <br> usando il form a lato.</p>
-                </ul>
+                <div class="user_propic">
+                    <img src="img/user.png" alt="Immagine del profilo" id="user_propic-img">
+                    <input type="file" id="user_propic" class="user_propic-input" accept="image/*">
+                    <label for="user_propic" class="user_propic-label">
+                        <i class="fa-regular fa-image"></i> Modifica immagine del profilo
+                    </label>
+                </div>
                 <div class="login_reg_form" id="mod_form">
                     <form action="/modifica" method="post">
                         <div class="log_reg_form--field">
-                            <input type="text" name="nome" placeholder="Nome">
+                            <span class="log_reg_form__field--icon">
+                                <i class="fas fa-user"></i>
+                            </span>
+                            <input type="text" name="nome" value="Mario">
                         </div>
                         <div class="log_reg_form--field">
-                            <input type="text" name="cognome" placeholder="Cognome">
+                            <span class="log_reg_form__field--icon">
+                                <i class="fas fa-user"></i>
+                            </span>
+                            <input type="text" name="cognome" value="Rossi">
                         </div>
                         <div class="log_reg_form--field">
+                            <span class="log_reg_form__field--icon">
+                                <i class="fa-solid fa-venus-mars"></i>
+                            </span>
                             <select name="genere" id="">
-                                <option value="" disabled selected hidden>Genere</option>
-                                <option value="uomo">Uomo</option>
+                                <option value="uomo" selected>Uomo</option>
                                 <option value="donna">Donna</option>
                                 <option value="altro">Altro</option>
                             </select>
                         </div>
                         <div class="log_reg_form--field">
-                            <input type="email" name="email" placeholder="Email">
+                            <span class="log_reg_form__field--icon">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                            <input type="email" name="email" value="example@example.com">
                         </div>
                         <div class="log_reg_form--field">
-                            <input type="password" name="password" placeholder="Password">
+                            <span class="log_reg_form__field--icon">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                            <input type="password" name="password" value="password">
                         </div>
                         <div class="button_div">
                             <button type="submit">Modifica</button>
