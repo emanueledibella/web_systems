@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Posts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="twitter_posts.xsd">
+    <Post>
+        <AuthorName>John Doe</AuthorName>
+        <ProfileImage>/johndoe.jpg</ProfileImage>
+        <DateTime>2024-11-04T10:30:00</DateTime>
+        <MessageText>This is my first post on this platform!</MessageText>
+        <MessageImage>./img/post1.jpg</MessageImage>
+        <Likes>20</Likes>
+        <Comments>
+            <CommentAuthorName>Jane Smith</CommentAuthorName>
+            <CommentProfileImage>http://example.com/profiles/janesmith.jpg</CommentProfileImage>
+            <CommentDateTime>2024-11-04T11:00:00</CommentDateTime>
+            <CommentText>Great post, John!</CommentText>
+            <CommentImage>./img/comment1.jpg</CommentImage>
+            <CommentLikes>5</CommentLikes>
+        </Comments>
+        <Comments>
+            <CommentAuthorName>Mike Jones</CommentAuthorName>
+            <CommentProfileImage>./img/mikejones.jpg</CommentProfileImage>
+            <CommentDateTime>2024-11-04T11:05:00</CommentDateTime>
+            <CommentText>Welcome to the platform!</CommentText>
+            <CommentLikes>3</CommentLikes>
+        </Comments>
+    </Post>
+    <Post>
+        <AuthorName>Matt Tizio</AuthorName>
+        <ProfileImage>/matttizio.jpg</ProfileImage>
+        <DateTime>2024-11-01T10:25:00</DateTime>
+        <MessageText>Post di test!</MessageText>
+        <MessageImage>./img/post2.jpg</MessageImage>
+        <Likes>8</Likes>
+        <Comments>
+            <CommentAuthorName>Jane </CommentAuthorName>
+            <CommentProfileImage>./img/janesmith.jpg</CommentProfileImage>
+            <CommentDateTime>2024-11-01T11:00:00</CommentDateTime>
+            <CommentText>Bravo Matt!</CommentText>
+            <CommentImage>./img/comment1.jpg</CommentImage>
+            <CommentLikes>1</CommentLikes>
+        </Comments>
+        <Comments>
+            <CommentAuthorName>Mike Jones</CommentAuthorName>
+            <CommentProfileImage>./img/mikejones.jpg</CommentProfileImage>
+            <CommentDateTime>2024-11-04T11:05:00</CommentDateTime>
+            <CommentText>Sciao belo!</CommentText>
+            <CommentLikes>0</CommentLikes>
+        </Comments>
+    </Post>
+    <Post>
+        <AuthorName>MarioRossi</AuthorName>
+        <ProfileImage>http://example.com/profiles/mariorossi.jpg</ProfileImage>
+        <DateTime>2024-11-04T09:00:00</DateTime>
+        <MessageText>Ciao a tutti! Sono felice di iniziare questa nuova avventura qui!</MessageText>
+        <MessageImage>http://example.com/images/post_mariorossi.jpg</MessageImage>
+        <Likes>45</Likes>
+        <Comments>
+            <CommentAuthorName>LucaVerdi</CommentAuthorName>
+            <CommentProfileImage>http://example.com/profiles/lucaverdi.jpg</CommentProfileImage>
+            <CommentDateTime>2024-11-04T09:30:00</CommentDateTime>
+            <CommentText>Benvenuto, Mario! Non vedo l'ora di vedere i tuoi post!</CommentText>
+            <CommentImage>http://example.com/images/comment_lucaverdi.jpg</CommentImage>
+            <CommentLikes>12</CommentLikes>
+        </Comments>
+        <Comments>
+            <CommentAuthorName>SaraBianchi</CommentAuthorName>
+            <CommentProfileImage>http://example.com/profiles/sarabianchi.jpg</CommentProfileImage>
+            <CommentDateTime>2024-11-04T09:45:00</CommentDateTime>
+            <CommentText>Piacere di conoscerti, Mario!</CommentText>
+            <CommentLikes>8</CommentLikes>
+        </Comments>
+    </Post>
+</Posts>

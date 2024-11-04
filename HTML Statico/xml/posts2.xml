@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Posts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="twitter_posts.xsd">
+    <Post>
+        <AuthorName>AliceW</AuthorName>
+        <ProfileImage>./img/alicew.jpg</ProfileImage>
+        <DateTime>2024-11-04T14:20:00</DateTime>
+        <MessageText>Excited to share my thoughts with everyone here!</MessageText>
+        <Likes>15</Likes>
+        <Comments>
+            <CommentAuthorName>TomK</CommentAuthorName>
+            <CommentProfileImage>./img/tomk.jpg</CommentProfileImage>
+            <CommentDateTime>2024-11-04T14:45:00</CommentDateTime>
+            <CommentText>Nice to see you here, Alice!</CommentText>
+            <CommentLikes>2</CommentLikes>
+        </Comments>
+    </Post>
+    <Post>
+        <AuthorName>BrianL</AuthorName>
+        <ProfileImage>./img/brianl.jpg</ProfileImage>
+        <DateTime>2024-11-04T15:10:00</DateTime>
+        <MessageText>Just a quick update, more to come soon.</MessageText>
+        <Likes>30</Likes>
+    </Post>
+    <Post>
+        <AuthorName>GiuliaNeri</AuthorName>
+        <ProfileImage>http://example.com/profiles/giulianeri.jpg</ProfileImage>
+        <DateTime>2024-11-04T10:15:00</DateTime>
+        <MessageText>Oggi è una giornata fantastica per una passeggiata in montagna!</MessageText>
+        <Likes>78</Likes>
+        <Comments>
+            <CommentAuthorName>MarcoRuggeri</CommentAuthorName>
+            <CommentProfileImage>http://example.com/profiles/marcoruggeri.jpg</CommentProfileImage>
+            <CommentDateTime>2024-11-04T10:45:00</CommentDateTime>
+            <CommentText>Che invidia! Divertiti!</CommentText>
+            <CommentLikes>6</CommentLikes>
+        </Comments>
+        <Comments>
+            <CommentAuthorName>ElenaGreco</CommentAuthorName>
+            <CommentProfileImage>http://example.com/profiles/elenagreco.jpg</CommentProfileImage>
+            <CommentDateTime>2024-11-04T10:50:00</CommentDateTime>
+            <CommentText>Goditi la giornata, Giulia!</CommentText>
+            <CommentLikes>10</CommentLikes>
+        </Comments>
+    </Post>
+    <Post>
+        <AuthorName>FrancescoDeLuca</AuthorName>
+        <ProfileImage>http://example.com/profiles/francescodeluca.jpg</ProfileImage>
+        <DateTime>2024-11-04T11:30:00</DateTime>
+        <MessageText>Sto lavorando su un nuovo progetto e sono super motivato!</MessageText>
+        <Likes>90</Likes>
+        <Comments>
+            <CommentAuthorName>MartinaFerrari</CommentAuthorName>
+            <CommentProfileImage>http://example.com/profiles/martinaferrari.jpg</CommentProfileImage>
+            <CommentDateTime>2024-11-04T11:45:00</CommentDateTime>
+            <CommentText>In bocca al lupo, Francesco!</CommentText>
+            <CommentLikes>15</CommentLikes>
+        </Comments>
+    </Post>
+</Posts>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Posts">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Post" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="AuthorName" type="xs:string"/>
+                            <xs:element name="ProfileImage" type="xs:string"/>
+                            <xs:element name="DateTime" type="xs:dateTime"/>
+                            <xs:element name="MessageText" type="xs:string">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="280"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="MessageImage" type="xs:string" minOccurs="0"/>
+                            <xs:element name="Likes" type="xs:integer"/>
+                            <xs:element name="Comments" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="CommentAuthorName" type="xs:string"/>
+                                        <xs:element name="CommentProfileImage" type="xs:string"/>
+                                        <xs:element name="CommentDateTime" type="xs:dateTime"/>
+                                        <xs:element name="CommentText" type="xs:string">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:maxLength value="120"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="CommentImage" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="CommentLikes" type="xs:integer"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
