@@ -15,6 +15,19 @@ button:hover, button:hover * {
     text-decoration: none;
 }
 
+.btn {
+    background-color: #1da1f2;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #1991da;
+}
+
 .center {
     display: flex;
     justify-content: center;
@@ -137,18 +150,8 @@ button:hover, button:hover * {
 }
 
 .sidebar__button-publish {
-    background-color: #1da1f2;
-    color: #ffffff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 25px;
-    cursor: pointer;
     font-size: 16px;
     width: 100%;
-}
-
-.sidebar__button-publish:hover {
-    background-color: #1991da;
 }
 
 .content {
@@ -433,19 +436,6 @@ button:hover, button:hover * {
 
 .comments__button--image:hover {
     color: #9c9c9c;
-}
-
-.comments__button {
-    background-color: #1da1f2;
-    color: #ffffff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 25px;
-    cursor: pointer;
-}
-
-.comments__button:hover {
-    background-color: #1991da;
 }
 
 .create-post {

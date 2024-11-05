@@ -412,8 +412,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (postPage) {
         loadPost(postPage.dataset.postid);
-        loadComment(postPage.dataset.postid);
     }
+
+    document.addEventListener('click', function(event) {
+        if (event.target && event.target.id === 'comments_show_btn') {
+            document.querySelector('#comments_show_btn').remove();
+            loadComment(postPage.dataset.postid);
+        }
+    });
 
 
     document.addEventListener('click', function(event) {
