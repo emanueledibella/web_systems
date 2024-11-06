@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Posts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="posts.xsd">
+    <Post>
+        <Id>1</Id>
+        <AuthorName>John Doe</AuthorName>
+        <ProfileImage>https://randomuser.me/api/portraits/men/1.jpg</ProfileImage>
+        <DateTime>2024-11-04T10:30:00</DateTime>
+        <MessageText>This is my first post on this platform!</MessageText>
+        <MessageImage>https://picsum.photos/200/300</MessageImage>
+        <Likes>20</Likes>
+        <Comments>
+            <Comment>
+                <Id>1</Id>
+                <CommentAuthorName>Jane Smith</CommentAuthorName>
+                <CommentProfileImage>https://randomuser.me/api/portraits/women/1.jpg</CommentProfileImage>
+                <CommentDateTime>2024-11-04T11:00:00</CommentDateTime>
+                <CommentText>Great post, John!</CommentText>
+                <CommentImage>https://picsum.photos/200/300?random=1</CommentImage>
+                <CommentLikes>5</CommentLikes>
+            </Comment>
+            <Comment>
+                <Id>2</Id>
+                <CommentAuthorName>Mike Jones</CommentAuthorName>
+                <CommentProfileImage>https://randomuser.me/api/portraits/men/2.jpg</CommentProfileImage>
+                <CommentDateTime>2024-11-04T11:05:00</CommentDateTime>
+                <CommentText>Welcome to the platform!</CommentText>
+                <CommentLikes>3</CommentLikes>
+            </Comment>
+        </Comments>
+    </Post>
+    <Post>
+        <Id>2</Id>
+        <AuthorName>Matt Tizio</AuthorName>
+        <ProfileImage>https://randomuser.me/api/portraits/men/3.jpg</ProfileImage>
+        <DateTime>2024-11-01T10:25:00</DateTime>
+        <MessageText>Post di test!</MessageText>
+        <MessageImage>https://picsum.photos/200/300?random=2</MessageImage>
+        <Likes>8</Likes>
+        <Comments>
+            <Comment>
+                <Id>3</Id>
+                <CommentAuthorName>Jane Smith</CommentAuthorName>
+                <CommentProfileImage>https://randomuser.me/api/portraits/women/1.jpg</CommentProfileImage>
+                <CommentDateTime>2024-11-01T11:00:00</CommentDateTime>
+                <CommentText>Bravo Matt!</CommentText>
+                <CommentImage>https://picsum.photos/200/300?random=3</CommentImage>
+                <CommentLikes>1</CommentLikes>
+            </Comment>
+            <Comment>
+                <Id>4</Id>
+                <CommentAuthorName>Mike Jones</CommentAuthorName>
+                <CommentProfileImage>https://randomuser.me/api/portraits/men/2.jpg</CommentProfileImage>
+                <CommentDateTime>2024-11-04T11:05:00</CommentDateTime>
+                <CommentText>Sciao belo!</CommentText>
+                <CommentLikes>0</CommentLikes>
+            </Comment>
+        </Comments>
+    </Post>
+    <Post>
+        <Id>3</Id>
+        <AuthorName>Mario Rossi</AuthorName>
+        <ProfileImage>https://randomuser.me/api/portraits/men/4.jpg</ProfileImage>
+        <DateTime>2024-11-04T09:00:00</DateTime>
+        <MessageText>Ciao a tutti! Sono felice di iniziare questa nuova avventura qui! Spero di condividere tanti momenti speciali con voi e di imparare molto da questa esperienza. Grazie per il benvenuto!</MessageText>
+        <MessageImage>https://picsum.photos/200/300?random=4</MessageImage>
+        <Likes>45</Likes>
+        <Comments>
+            <Comment>
+                <Id>5</Id>
+                <CommentAuthorName>Luca Verdi</CommentAuthorName>
+                <CommentProfileImage>https://randomuser.me/api/portraits/men/5.jpg</CommentProfileImage>
+                <CommentDateTime>2024-11-04T09:30:00</CommentDateTime>
+                <CommentText>Benvenuto, Mario! Non vedo l'ora di vedere i tuoi post!</CommentText>
+                <CommentImage>https://picsum.photos/200/300?random=5</CommentImage>
+                <CommentLikes>12</CommentLikes>
+            </Comment>
+            <Comment>
+                <Id>6</Id>
+                <CommentAuthorName>Sara Bianchi</CommentAuthorName>
+                <CommentProfileImage>https://randomuser.me/api/portraits/women/3.jpg</CommentProfileImage>
+                <CommentDateTime>2024-11-04T09:45:00</CommentDateTime>
+                <CommentText>Piacere di conoscerti, Mario!</CommentText>
+                <CommentLikes>8</CommentLikes>
+            </Comment>
+        </Comments>
+    </Post>
+</Posts>

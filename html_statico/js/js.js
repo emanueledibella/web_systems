@@ -1,42 +1,63 @@
-const getPostsData = async () => {
-    //  const postsJson = await fetch('/posts/', 
-    //     {
-    //         method: 'GET',
-    //         query : {
-    //             limit: 10,
-    //             offset: 0
-    //         }
-    //     }
-    //  );
-    // const posts = await postsJson.json();
-    const posts = [
+const parsePosts = (xml) => {
+    const parser = new DOMParser();
+    const parsedXml = parser.parseFromString(xml.replace('<?xml version="1.0" encoding="UTF-8"?>',''), "text/xml");
+    return Array.from(parsedXml.querySelectorAll('Post')).map(post => {
+        const id = post.querySelector('Id').textContent;
+        const authorName = post.querySelector('AuthorName').textContent;
+        const authorImage = post.querySelector('ProfileImage').textContent;
+        const dateTime = post.querySelector('DateTime').textContent.replace('T', ' ');
+        const text = post.querySelector('MessageText').textContent;
+        const image = (post.querySelector('MessageImage')) ? post.querySelector('MessageImage').textContent : null;
+        const likesCount = post.querySelector('Likes').textContent;
+        const commentsCount = post.querySelectorAll('Comment').length;
+        const comments = Array.from(post.querySelectorAll('Comment')).map(comment => {
+            const id = comment.querySelector('Id').textContent;
+            const commentAuthorName = comment.querySelector('CommentAuthorName').textContent;
+            const commentAuthorImage = comment.querySelector('CommentProfileImage').textContent;
+            const dateTime = post.querySelector('CommentDateTime').textContent.replace('T', ' ');
+            const commentText = comment.querySelector('CommentText').textContent;
+            const commentImage = (post.querySelector('CommentImage')) ? post.querySelector('CommentImage').textContent : null;
+            const commentLikes = comment.querySelector('CommentLikes').textContent;
+            return {
+                id,
+                authorName: commentAuthorName,
+                authorImage: commentAuthorImage,
+                dateTime,
+                text: commentText,
+                image: commentImage,
+                likes: commentLikes
+            }
+        });
+        const snippet = text.length > 100 ? text.substring(0, 100) + '...' : text;
+        return {
+            id,
+            authorName,
+            authorImage,
+            text,
+            dateTime,
+            snippet,
+            image,
+            likesCount,
+            commentsCount,
+            comments
+        }
+    });
+}
+
+const getPostsData = async (limit= 10, offset = 0, other = 0) => {
+    const fileToFetch = other ? '/xml/posts2.xml' : '/xml/posts1.xml';
+     const response = await fetch(fileToFetch, 
         {
-            id: 1,
-            authorImage: "https://randomuser.me/api/portraits",
-            authorName: "John Doe",
-            image: "https://picsum.photos/200/300",
-            snippet: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc.",
-            likesCount: 10,
-            commentsCount: 5
-        },
-        {
-            id: 2,
-            authorImage: "https://randomuser.me/api/portraits",
-            authorName: "Mary Jane",
-            image: "https://picsum.photos/200/300",
-            snippet: "sic semper tyrannis et tu brute Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc.",
-            likesCount: 30,
-            commentsCount: 25
-        },
-        {
-            id: 3,
-            authorImage: "https://randomuser.me/api/portraits",
-            authorName: "A random person",
-            snippet: "Apelle nemo altero nam nec purus nec nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            likesCount: 30,
-            commentsCount: 25
-        },
-    ];
+            method: 'GET',
+            query : {
+                limit,
+                offset
+            }
+        }
+    );
+    const postsXml = await response.text();
+    const posts = parsePosts(postsXml);
+
     const postsContainer = document.getElementById('homepage');
     posts.forEach(post => {
         // container
@@ -57,6 +78,12 @@ const getPostsData = async () => {
         authorName.textContent = post.authorName;
         postHeader.appendChild(authorImage);
         postHeader.appendChild(authorName);
+
+        //datetime
+        const postDateTime = document.createElement('div');
+        postDateTime.classList.add('post__datetime');
+        const date = new Date(post.dateTime);
+        postDateTime.textContent = `Pubblicato il ${date.toLocaleString()}`;
 
         // body
         const postBody = document.createElement('div');
@@ -111,6 +138,7 @@ const getPostsData = async () => {
         postFooter.appendChild(postComment);
 
         postLink.appendChild(postHeader);
+        postLink.appendChild(postDateTime);
         postLink.appendChild(postBody);
 
         postElement.appendChild(postLink);
@@ -118,6 +146,8 @@ const getPostsData = async () => {
         
         postsContainer.appendChild(postElement);
     });
+    const btn = `<button class="btn" id="load_more" style="width: 100%;">Carica altri post</button>`;
+    postsContainer.innerHTML += btn;
 }
 
 const insertLike = async (e) => {
@@ -418,6 +448,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (event.target && event.target.id === 'comments_show_btn') {
             document.querySelector('#comments_show_btn').remove();
             loadComment(postPage.dataset.postid);
+        }
+    });
+
+    document.addEventListener('click', function(event) {
+        if (event.target && event.target.id === 'load_more') {
+            document.querySelector('#load_more').remove();
+            getPostsData(10, 1, 1);
         }
     });
 

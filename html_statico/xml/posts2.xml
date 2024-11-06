@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Posts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="posts.xsd">
+    <Post>
+        <Id>4</Id>
+        <AuthorName>Alice W</AuthorName>
+        <ProfileImage>https://randomuser.me/api/portraits/women/2.jpg</ProfileImage>
+        <DateTime>2024-11-04T14:20:00</DateTime>
+        <MessageText>Excited to share my thoughts with everyone here!</MessageText>
+        <Likes>15</Likes>
+        <Comments>
+            <Comment>
+                <Id>7</Id>
+                <CommentAuthorName>TomK</CommentAuthorName>
+                <CommentProfileImage>https://randomuser.me/api/portraits/men/6.jpg</CommentProfileImage>
+                <CommentDateTime>2024-11-04T14:45:00</CommentDateTime>
+                <CommentText>Nice to see you here, Alice!</CommentText>
+                <CommentLikes>2</CommentLikes>
+            </Comment>
+        </Comments>
+    </Post>
+    <Post>
+        <Id>5</Id>
+        <AuthorName>BrianL</AuthorName>
+        <ProfileImage>https://randomuser.me/api/portraits/men/7.jpg</ProfileImage>
+        <DateTime>2024-11-04T15:10:00</DateTime>
+        <MessageText>Just a quick update, more to come soon.</MessageText>
+        <Likes>30</Likes>
+    </Post>
+    <Post>
+        <Id>6</Id>
+        <AuthorName>Giulia Neri</AuthorName>
+        <ProfileImage>https://randomuser.me/api/portraits/men/8.jpg</ProfileImage>
+        <DateTime>2024-11-04T10:15:00</DateTime>
+        <MessageText>Oggi è una giornata fantastica per una passeggiata in montagna!</MessageText>
+        <Likes>78</Likes>
+        <Comments>
+            <Comment>
+                <Id>8</Id>
+                <CommentAuthorName>Marco Ruggeri</CommentAuthorName>
+                <CommentProfileImage>https://randomuser.me/api/portraits/men/9.jpg</CommentProfileImage>
+                <CommentDateTime>2024-11-04T10:45:00</CommentDateTime>
+                <CommentText>Che invidia! Divertiti!</CommentText>
+                <CommentLikes>6</CommentLikes>
+            </Comment>
+            <Comment>
+                <Id>9</Id>
+                <CommentAuthorName>Elena Greco</CommentAuthorName>
+                <CommentProfileImage>https://randomuser.me/api/portraits/women/8.jpg</CommentProfileImage>
+                <CommentDateTime>2024-11-04T10:50:00</CommentDateTime>
+                <CommentText>Goditi la giornata, Giulia!</CommentText>
+                <CommentLikes>10</CommentLikes>
+            </Comment>
+        </Comments>
+    </Post>
+    <Post>
+        <Id>7</Id>
+        <AuthorName>Francesco De Luca</AuthorName>
+        <ProfileImage>https://randomuser.me/api/portraits/men/9.jpg</ProfileImage>
+        <DateTime>2024-11-04T11:30:00</DateTime>
+        <MessageText>Sto lavorando su un nuovo progetto e sono super motivato!</MessageText>
+        <Likes>90</Likes>
+        <Comments>
+            <Comment>
+                <Id>10</Id>
+                <CommentAuthorName>Martina Ferrari</CommentAuthorName>
+                <CommentProfileImage>https://randomuser.me/api/portraits/women/10.jpg</CommentProfileImage>
+                <CommentDateTime>2024-11-04T11:45:00</CommentDateTime>
+                <CommentText>In bocca al lupo, Francesco!</CommentText>
+                <CommentLikes>15</CommentLikes>
+            </Comment>
+        </Comments>
+    </Post>
+</Posts>
