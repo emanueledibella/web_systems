@@ -65,8 +65,9 @@ const getPostsData = async (limit= 10, offset = 0, other = 0) => {
         postElement.dataset.postid = post.id;
         postElement.classList.add('post');
         const postLink = document.createElement('a');
-        postLink.href = `/post/${post.id}`;
         postLink.classList.add('post__link');
+        postLink.id = `post__link`;
+        postLink.dataset.postid = post.id;
         // header
         const postHeader = document.createElement('div');
         postHeader.classList.add('post__header');
@@ -315,8 +316,8 @@ const loadComment = async (postId) => {
 }
 
 const loadPost = async (postId) => {
-    // const response = await fetch(`/post/${postId}`);
-    // const post = await response.json();
+     const response = await fetch(`/xml/${postId}.xml`);
+    const post = await response.text();
 
     const post = {
         id: 1,
@@ -440,9 +441,12 @@ document.addEventListener('DOMContentLoaded', function() {
         getPostsData();
     }
 
-    if (postPage) {
-        loadPost(postPage.dataset.postid);
-    }
+    document.addEventListener('click', function(event) {
+        if (event.target && event.target.id === 'post__link') {
+            const postId = document.querySelector('#post__link').dataset.postid;
+            loadPost(postId);
+        }
+    });
 
     document.addEventListener('click', function(event) {
         if (event.target && event.target.id === 'comments_show_btn') {
