@@ -5,6 +5,7 @@
         <AuthorName>Alice W</AuthorName>
         <ProfileImage>https://randomuser.me/api/portraits/women/2.jpg</ProfileImage>
         <DateTime>2024-11-04T14:20:00</DateTime>
+        <PostTitle>Titolo 4</PostTitle>
         <MessageText>Excited to share my thoughts with everyone here!</MessageText>
         <Likes>15</Likes>
         <Comments>
@@ -23,14 +24,17 @@
         <AuthorName>BrianL</AuthorName>
         <ProfileImage>https://randomuser.me/api/portraits/men/7.jpg</ProfileImage>
         <DateTime>2024-11-04T15:10:00</DateTime>
+        <PostTitle>Titolo 5</PostTitle>
         <MessageText>Just a quick update, more to come soon.</MessageText>
         <Likes>30</Likes>
+        <Comments></Comments>
     </Post>
     <Post>
         <Id>6</Id>
         <AuthorName>Giulia Neri</AuthorName>
         <ProfileImage>https://randomuser.me/api/portraits/men/8.jpg</ProfileImage>
         <DateTime>2024-11-04T10:15:00</DateTime>
+        <PostTitle>Titolo 6</PostTitle>
         <MessageText>Oggi è una giornata fantastica per una passeggiata in montagna!</MessageText>
         <Likes>78</Likes>
         <Comments>
@@ -57,6 +61,7 @@
         <AuthorName>Francesco De Luca</AuthorName>
         <ProfileImage>https://randomuser.me/api/portraits/men/9.jpg</ProfileImage>
         <DateTime>2024-11-04T11:30:00</DateTime>
+        <PostTitle>Titolo 7</PostTitle>
         <MessageText>Sto lavorando su un nuovo progetto e sono super motivato!</MessageText>
         <Likes>90</Likes>
         <Comments>

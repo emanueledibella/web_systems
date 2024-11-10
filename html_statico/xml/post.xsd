@@ -7,6 +7,7 @@
                 <xs:element name="AuthorName" type="xs:string"/>
                 <xs:element name="ProfileImage" type="xs:string"/>
                 <xs:element name="DateTime" type="xs:dateTime"/>
+                <xs:element name="PostTitle" type="xs:string"/>
                 <xs:element name="MessageText">
                     <xs:simpleType>
                         <xs:restriction base="xs:string">

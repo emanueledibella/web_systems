@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Post xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="post.xsd">
+    <Id>3</Id>
+    <AuthorName>Mario Rossi</AuthorName>
+    <ProfileImage>https://randomuser.me/api/portraits/men/4.jpg</ProfileImage>
+    <DateTime>2024-11-04T09:00:00</DateTime>
+    <PostTitle>Titolo 3</PostTitle>
+    <MessageText>Ciao a tutti! Sono felice di iniziare questa nuova avventura qui! Spero di condividere tanti momenti speciali con voi e di imparare molto da questa esperienza. Grazie per il benvenuto!</MessageText>
+    <MessageImage>https://picsum.photos/200/300?random=4</MessageImage>
+    <Likes>45</Likes>
+    <Comments>
+        <Comment>
+            <Id>5</Id>
+            <CommentAuthorName>Luca Verdi</CommentAuthorName>
+            <CommentProfileImage>https://randomuser.me/api/portraits/men/5.jpg</CommentProfileImage>
+            <CommentDateTime>2024-11-04T09:30:00</CommentDateTime>
+            <CommentText>Benvenuto, Mario! Non vedo l'ora di vedere i tuoi post!</CommentText>
+            <CommentImage>https://picsum.photos/200/300?random=5</CommentImage>
+            <CommentLikes>12</CommentLikes>
+        </Comment>
+        <Comment>
+            <Id>6</Id>
+            <CommentAuthorName>Sara Bianchi</CommentAuthorName>
+            <CommentProfileImage>https://randomuser.me/api/portraits/women/3.jpg</CommentProfileImage>
+            <CommentDateTime>2024-11-04T09:45:00</CommentDateTime>
+            <CommentText>Piacere di conoscerti, Mario!</CommentText>
+            <CommentLikes>8</CommentLikes>
+        </Comment>
+    </Comments>
+</Post>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Post xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="post.xsd">
+    <Id>2</Id>
+    <AuthorName>Matt Tizio</AuthorName>
+    <ProfileImage>https://randomuser.me/api/portraits/men/3.jpg</ProfileImage>
+    <DateTime>2024-11-01T10:25:00</DateTime>
+    <PostTitle>Titolo 2</PostTitle>
+    <MessageText>Post di test!</MessageText>
+    <MessageImage>https://picsum.photos/200/300?random=2</MessageImage>
+    <Likes>8</Likes>
+    <Comments>
+        <Comment>
+            <Id>3</Id>
+            <CommentAuthorName>Jane Smith</CommentAuthorName>
+            <CommentProfileImage>https://randomuser.me/api/portraits/women/1.jpg</CommentProfileImage>
+            <CommentDateTime>2024-11-01T11:00:00</CommentDateTime>
+            <CommentText>Bravo Matt!</CommentText>
+            <CommentImage>https://picsum.photos/200/300?random=3</CommentImage>
+            <CommentLikes>1</CommentLikes>
+        </Comment>
+        <Comment>
+            <Id>4</Id>
+            <CommentAuthorName>Mike Jones</CommentAuthorName>
+            <CommentProfileImage>https://randomuser.me/api/portraits/men/2.jpg</CommentProfileImage>
+            <CommentDateTime>2024-11-04T11:05:00</CommentDateTime>
+            <CommentText>Sciao belo!</CommentText>
+            <CommentLikes>0</CommentLikes>
+        </Comment>
+    </Comments>
+</Post>

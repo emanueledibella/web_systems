@@ -5,6 +5,7 @@
         <AuthorName>John Doe</AuthorName>
         <ProfileImage>https://randomuser.me/api/portraits/men/1.jpg</ProfileImage>
         <DateTime>2024-11-04T10:30:00</DateTime>
+        <PostTitle>Titolo 1</PostTitle>
         <MessageText>This is my first post on this platform!</MessageText>
         <MessageImage>https://picsum.photos/200/300</MessageImage>
         <Likes>20</Likes>
@@ -33,6 +34,7 @@
         <AuthorName>Matt Tizio</AuthorName>
         <ProfileImage>https://randomuser.me/api/portraits/men/3.jpg</ProfileImage>
         <DateTime>2024-11-01T10:25:00</DateTime>
+        <PostTitle>Titolo 2</PostTitle>
         <MessageText>Post di test!</MessageText>
         <MessageImage>https://picsum.photos/200/300?random=2</MessageImage>
         <Likes>8</Likes>
@@ -61,6 +63,7 @@
         <AuthorName>Mario Rossi</AuthorName>
         <ProfileImage>https://randomuser.me/api/portraits/men/4.jpg</ProfileImage>
         <DateTime>2024-11-04T09:00:00</DateTime>
+        <PostTitle>Titolo 3</PostTitle>
         <MessageText>Ciao a tutti! Sono felice di iniziare questa nuova avventura qui! Spero di condividere tanti momenti speciali con voi e di imparare molto da questa esperienza. Grazie per il benvenuto!</MessageText>
         <MessageImage>https://picsum.photos/200/300?random=4</MessageImage>
         <Likes>45</Likes>

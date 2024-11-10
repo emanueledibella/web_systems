@@ -6,6 +6,7 @@ const parsePosts = (xml) => {
         const authorName = post.querySelector('AuthorName').textContent;
         const authorImage = post.querySelector('ProfileImage').textContent;
         const dateTime = post.querySelector('DateTime').textContent.replace('T', ' ');
+        const title = post.querySelector('PostTitle').textContent;
         const text = post.querySelector('MessageText').textContent;
         const image = (post.querySelector('MessageImage')) ? post.querySelector('MessageImage').textContent : null;
         const likesCount = post.querySelector('Likes').textContent;
@@ -14,7 +15,7 @@ const parsePosts = (xml) => {
             const id = comment.querySelector('Id').textContent;
             const commentAuthorName = comment.querySelector('CommentAuthorName').textContent;
             const commentAuthorImage = comment.querySelector('CommentProfileImage').textContent;
-            const dateTime = post.querySelector('CommentDateTime').textContent.replace('T', ' ');
+            const commentDateTime = comment.querySelector('CommentDateTime').textContent.replace('T', ' ');
             const commentText = comment.querySelector('CommentText').textContent;
             const commentImage = (post.querySelector('CommentImage')) ? post.querySelector('CommentImage').textContent : null;
             const commentLikes = comment.querySelector('CommentLikes').textContent;
@@ -22,7 +23,7 @@ const parsePosts = (xml) => {
                 id,
                 authorName: commentAuthorName,
                 authorImage: commentAuthorImage,
-                dateTime,
+                dateTime: commentDateTime,
                 text: commentText,
                 image: commentImage,
                 likes: commentLikes
@@ -35,6 +36,7 @@ const parsePosts = (xml) => {
             authorImage,
             text,
             dateTime,
+            title,
             snippet,
             image,
             likesCount,
@@ -57,7 +59,6 @@ const getPostsData = async (limit= 10, offset = 0, other = 0) => {
     );
     const postsXml = await response.text();
     const posts = parsePosts(postsXml);
-
     const postsContainer = document.getElementById('homepage');
     posts.forEach(post => {
         // container
@@ -77,14 +78,13 @@ const getPostsData = async (limit= 10, offset = 0, other = 0) => {
         const authorName = document.createElement('span');
         authorName.classList.add('post__author');
         authorName.textContent = post.authorName;
-        postHeader.appendChild(authorImage);
-        postHeader.appendChild(authorName);
-
-        //datetime
         const postDateTime = document.createElement('div');
         postDateTime.classList.add('post__datetime');
         const date = new Date(post.dateTime);
         postDateTime.textContent = `Pubblicato il ${date.toLocaleString()}`;
+        postHeader.appendChild(authorImage);
+        postHeader.appendChild(authorName);
+        postHeader.appendChild(postDateTime);
 
         // body
         const postBody = document.createElement('div');
@@ -139,7 +139,7 @@ const getPostsData = async (limit= 10, offset = 0, other = 0) => {
         postFooter.appendChild(postComment);
 
         postLink.appendChild(postHeader);
-        postLink.appendChild(postDateTime);
+        
         postLink.appendChild(postBody);
 
         postElement.appendChild(postLink);
@@ -169,7 +169,11 @@ const insertLike = async (e) => {
 }
 
 const goToComment = (id) => {
-    window.location.href = `/post/${id}#comment_input`;
+    postOnModal(id);
+    loadComments(id);
+    setTimeout(function(){
+        document.querySelector('.comments').scrollIntoView({behavior:"smooth"});
+    }, 500); 
 }
 
 
@@ -241,97 +245,74 @@ const postComment = async (postId, comment, commentFile) => {
 
 const reloadComments = async (postId) => {
     document.querySelector('#comments_list').innerHTML = '';
-    loadComment(postId);
+    loadComments(postId);
 }
 
-const loadComment = async (postId) => {
-    // const response = await fetch(`/post/comment/${postId}`);
-    // const data = await response.json();
-    const data = [
-        {
-            authorImage: "https://randomuser.me/api/portraits/men/1.jpg",
-            authorName: "John Doe",
-            image: "https://picsum.photos/100/100",
-            text: "This is a comment from John Doe."
-        },
-        {
-            authorImage: "https://randomuser.me/api/portraits/women/2.jpg",
-            authorName: "Jane Smith",
-            image: "https://picsum.photos/100/100",
-            text: "This is a comment from Jane Smith."
-        },
-        {
-            authorImage: "https://randomuser.me/api/portraits/men/3.jpg",
-            authorName: "Mike Johnson",
-            image: "https://picsum.photos/100/100",
-            text: "This is a comment from Mike Johnson."
+const loadComments = async (postId) => {
+    document.querySelector('#comments_show_btn').style.display = 'none';
+    const response = await fetch(`/xml/${postId}.xml`);
+    const postXML = await response.text();
+    const post = parsePosts(postXML)[0];
+    const commentsContainer = document.getElementById('comments_list');
+    comments = post.comments;
+    comments.forEach(comment => {
+        const commentElement = document.createElement('div');
+        commentElement.classList.add('comment');
+        // Header
+        const commentHeader = document.createElement('div');
+        commentHeader.classList.add('comment__header');
+        const commentAuthorImage = document.createElement('img');
+        commentAuthorImage.src = comment.authorImage;
+        commentAuthorImage.classList.add('comment__profile-image');
+        const commentAuthorName = document.createElement('span');
+        commentAuthorName.classList.add('comment__author');
+        commentAuthorName.textContent = comment.authorName;
+        const commentDateTime = document.createElement('div');
+        commentDateTime.classList.add('comment__datetime');
+        const date = new Date(comment.dateTime);
+        commentDateTime.textContent = `Pubblicato il ${date.toLocaleString()}`;
+
+        commentHeader.appendChild(commentAuthorImage);
+        commentHeader.appendChild(commentAuthorName);
+        commentHeader.appendChild(commentDateTime);
+
+        // Body
+        const commentBody = document.createElement('div');
+        commentBody.classList.add('comment__body');
+        let commentImage;
+        if (comment.image) {
+            commentImage = document.createElement('img');
+            commentImage.src = comment.image;
+            commentImage.classList.add('comment__image');
         }
-    ]
-    if (!data.error) {
-        const commentsContainer = document.getElementById('comments_list');
-        data.forEach(comment => {
-            const commentElement = document.createElement('div');
-            commentElement.classList.add('comment');
-            // Header
-            const commentHeader = document.createElement('div');
-            commentHeader.classList.add('comment__header');
-            const commentAuthorImage = document.createElement('img');
-            commentAuthorImage.src = comment.authorImage;
-            commentAuthorImage.classList.add('comment__profile-image');
-            const commentAuthorName = document.createElement('span');
-            commentAuthorName.classList.add('comment__author');
-            commentAuthorName.textContent = comment.authorName;
 
-            commentHeader.appendChild(commentAuthorImage);
-            commentHeader.appendChild(commentAuthorName);
+        const commentText = document.createElement('p');
+        commentText.classList.add('comment__text');
+        commentText.textContent = comment.text;
 
-            // Body
-            const commentBody = document.createElement('div');
-            commentBody.classList.add('comment__body');
-            let commentImage;
-            if (comment.image) {
-                commentImage = document.createElement('img');
-                commentImage.src = comment.image;
-                commentImage.classList.add('comment__image');
-            }
+        if (comment.image) {
+            commentBody.appendChild(commentImage);
+        }
+        commentBody.appendChild(commentText);
 
-            const commentText = document.createElement('p');
-            commentText.classList.add('comment__text');
-            commentText.textContent = comment.text;
+        commentElement.appendChild(commentHeader);
+        commentElement.appendChild(commentBody);
 
-            if (comment.image) {
-                commentBody.appendChild(commentImage);
-            }
-            commentBody.appendChild(commentText);
-
-            commentElement.appendChild(commentHeader);
-            commentElement.appendChild(commentBody);
-
-            commentsContainer.appendChild(commentElement);
-        });
-
-    } else {
-        console.error('Error loading comments:', data.error);
-    }
+        commentsContainer.appendChild(commentElement);
+    });
 }
 
-const loadPost = async (postId) => {
-     const response = await fetch(`/xml/${postId}.xml`);
-    const post = await response.text();
+const postOnModal = async (postId) => {
+    //Caricamento post nella modale
+    const response = await fetch(`/xml/${postId}.xml`);
+    const postXML = await response.text();
+    const post = parsePosts(postXML)[0];
 
-    const post = {
-        id: 1,
-        authorImage: "https://randomuser.me/api/portraits/men/1.jpg",
-        authorName: "John Doe",
-        image: "https://picsum.photos/200/300",
-        title: "First Post",
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc.",
-        likesCount: 10,
-        commentsCount: 5
-    };
-    
-    
+    document.getElementById('modal').style.display = 'block'
+    document.getElementById('modal-overlay').style.display = 'block'
+
     const postContainer = document.getElementById('postFull');
+    postContainer.dataset.postid = postId;
     // header
     const headerElement = document.createElement('div');
     headerElement.classList.add('post__header');
@@ -341,9 +322,13 @@ const loadPost = async (postId) => {
     const authorName = document.createElement('span');
     authorName.classList.add('post__author');
     authorName.textContent = post.authorName;
-    
+    const postDateTime = document.createElement('div');
+    postDateTime.classList.add('post__datetime');
+    const date = new Date(post.dateTime);
+    postDateTime.textContent = `Pubblicato il ${date.toLocaleString()}`;
     headerElement.appendChild(authorImage);
     headerElement.appendChild(authorName);
+    headerElement.appendChild(postDateTime)
 
     // body
     const bodyElement = document.createElement('div');
@@ -359,7 +344,7 @@ const loadPost = async (postId) => {
     }
     const contentElement = document.createElement('p');
     contentElement.classList.add('post__content');
-    contentElement.textContent = post.content;
+    contentElement.textContent = post.text;
 
     bodyElement.appendChild(titleElement);
     if (post.image) {
@@ -385,22 +370,7 @@ const loadPost = async (postId) => {
     likeElement.appendChild(likeIcon);
     likeElement.appendChild(likeCount);
 
-    // comment
-    const commentElement = document.createElement('div');
-    commentElement.classList.add('post__button', 'post__button--comment', 'clearfix');
-    commentElement.dataset.postid = post.id;
-    commentElement.id = 'post_comment';
-    const commentIcon = document.createElement('i');
-    commentIcon.classList.add('fa-regular', 'fa-comment');
-    const commentCount = document.createElement('span');
-    commentCount.classList.add('post__comments');
-    commentCount.textContent = post.commentsCount;
-
-    commentElement.appendChild(commentIcon);
-    commentElement.appendChild(commentCount);
-
     footerElement.appendChild(likeElement);
-    footerElement.appendChild(commentElement);
 
     postContainer.appendChild(headerElement);
     postContainer.appendChild(bodyElement);
@@ -443,17 +413,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.addEventListener('click', function(event) {
         if (event.target && event.target.id === 'post__link') {
-            const postId = document.querySelector('#post__link').dataset.postid;
-            loadPost(postId);
+            const postId = event.target.dataset.postid;
+            postOnModal(postId);
+        }
+    });
+
+    //A modale aperta, innesca i listener
+    document.addEventListener('click', function(event) {
+        if (event.target && event.target.id === 'comments_show_btn') {
+            loadComments(postPage.dataset.postid);
+        }
+
+        if (event.target && event.target.id == 'comment_submit') {
+            const comment = document.querySelector(`#comment_input`).value;
+            const commentFile = document.querySelector(`#comment_image`).files[0];
+            postComment(postPage.dataset.postid, comment, commentFile);
         }
     });
 
     document.addEventListener('click', function(event) {
-        if (event.target && event.target.id === 'comments_show_btn') {
-            document.querySelector('#comments_show_btn').remove();
-            loadComment(postPage.dataset.postid);
+        if (event.target && event.target.id === 'modal-overlay') {
+            //Chiusura modale
+            document.getElementById('modal').style.display = 'none'
+            document.getElementById('modal-overlay').style.display = 'none'
+            document.getElementById('postFull').replaceChildren()
+            document.querySelector('#comments_show_btn').removeAttribute('style');
+            document.querySelector('#comments_list').replaceChildren();
         }
-    });
+    });    
 
     document.addEventListener('click', function(event) {
         if (event.target && event.target.id === 'load_more') {
@@ -475,11 +462,7 @@ document.addEventListener('DOMContentLoaded', function() {
             goToComment(postId);
         }
 
-        if (event.target && event.target.id == 'comment_submit') {
-            const comment = document.querySelector(`#comment_input`).value;
-            const commentFile = document.querySelector(`#comment_image`).files[0];
-            postComment(event.target.dataset.postid, comment, commentFile);
-        }
+       
 
         if (event.target && event.target.id == 'post') {
             post();
