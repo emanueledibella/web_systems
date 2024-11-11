@@ -252,9 +252,8 @@ const loadComments = async (postId) => {
     document.querySelector('#comments_show_btn').style.display = 'none';
     const response = await fetch(`/xml/${postId}.xml`);
     const postXML = await response.text();
-    const post = parsePosts(postXML)[0];
+    const comments = parsePosts(postXML)[0].comments;
     const commentsContainer = document.getElementById('comments_list');
-    comments = post.comments;
     comments.forEach(comment => {
         const commentElement = document.createElement('div');
         commentElement.classList.add('comment');
@@ -306,7 +305,7 @@ const loadComments = async (postId) => {
         likeIcon.classList.add('fa-regular', 'fa-thumbs-up');
         const likeCount = document.createElement('span');
         likeCount.classList.add('post__likes');
-        likeCount.textContent = post.likesCount;
+        likeCount.textContent = comment.likes;
         
         likeElement.appendChild(likeIcon);
         likeElement.appendChild(likeCount);

@@ -173,7 +173,6 @@ button:hover, button:hover * {
 .post {
     border-radius: 10px;
     padding: 20px;
-    padding-bottom: 0;
     margin-bottom: 20px;
     border: 1px solid darkcyan;
 }
@@ -219,9 +218,10 @@ button:hover, button:hover * {
     object-fit:cover
 }
 
-.post__snippet {
+.post__snippet, .post__content {
     font-size: 18px;
     margin-bottom: 15px;
+    text-align: justify;
 }
 
 .post__footer, .comment__footer {
@@ -378,12 +378,6 @@ button:hover, button:hover * {
     z-index: 999;
 }
 
-.post__content {
-    font-size: 16px;
-    margin-bottom: 15px;
-}
-
-
 .comments {
     margin-top: 30px;
     scroll-margin-top: 15px;
@@ -427,6 +421,7 @@ button:hover, button:hover * {
 .comment__text {
     color: #000;
     font-size: 16px;
+    text-align: justify;
 }
 
 .comment__footer {
