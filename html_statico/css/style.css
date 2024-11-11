@@ -224,12 +224,12 @@ button:hover, button:hover * {
     margin-bottom: 15px;
 }
 
-.post__footer {
+.post__footer, .comment__footer {
     display: flex;
     gap: 20px;
 }
 
-.post__button {
+.post__button, .comment__button {
     background-color: transparent;
     color: #000;
     border: none;
@@ -245,11 +245,11 @@ button:hover, button:hover * {
     border-radius: 10px;
 }
 
-.post__button:hover {
+.post__button:hover, .comment__button:hover {
     background-color: #cccccc;
     opacity: 0.8;
 }
-.post__likes, .post__comments {
+.post__likes, .post__comments, .comment__likes {
     display: flex;
     align-items: center;
     margin-left: 5px;
@@ -335,20 +335,28 @@ button:hover, button:hover * {
 }
 
 .modal {
-    display: none;
+    opacity: 0;
     position: fixed;
-    top: 50%;
+    top: -50%;
     left: 50%;
-    min-width: 600px;
-    max-height: 700px;
+    min-width: 50%;
+    max-height: 80%;
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    transform: translate(-50%, -50%);
     z-index: 10000;
     background-color: #eee;
     border-radius: 8px;
     padding: 20px;
+    transform: translate(-50%, 0);
+    transition: all 0.5s ease;
+}
+
+.modal.open {
+    opacity: 1;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
 }
 
 .modal .post__button--like {
@@ -419,6 +427,14 @@ button:hover, button:hover * {
 .comment__text {
     color: #000;
     font-size: 16px;
+}
+
+.comment__footer {
+    width: 100%;
+}
+
+.comment__button {
+    width: 100%;
 }
 
 .comments__form {

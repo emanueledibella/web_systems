@@ -46,7 +46,7 @@ const parsePosts = (xml) => {
     });
 }
 
-const getPostsData = async (limit= 10, offset = 0, other = 0) => {
+const getPostsData = async (limit= 10, offset = 0, other = 0, homepage = 1) => {
     const fileToFetch = other ? '/xml/posts2.xml' : '/xml/posts1.xml';
      const response = await fetch(fileToFetch, 
         {
@@ -59,7 +59,7 @@ const getPostsData = async (limit= 10, offset = 0, other = 0) => {
     );
     const postsXml = await response.text();
     const posts = parsePosts(postsXml);
-    const postsContainer = document.getElementById('homepage');
+    const postsContainer = homepage ? document.getElementById('homepage') : document.getElementById('profile');
     posts.forEach(post => {
         // container
         const postElement = document.createElement('div');
@@ -73,7 +73,7 @@ const getPostsData = async (limit= 10, offset = 0, other = 0) => {
         const postHeader = document.createElement('div');
         postHeader.classList.add('post__header');
         const authorImage = document.createElement('img');
-        authorImage.src = post.authorImage;
+        authorImage.src = (post.authorImage) ? post.authorImage : './img/user.png';
         authorImage.classList.add('post__profile-image');
         const authorName = document.createElement('span');
         authorName.classList.add('post__author');
@@ -295,8 +295,28 @@ const loadComments = async (postId) => {
         }
         commentBody.appendChild(commentText);
 
+        // footer
+        const footerElement = document.createElement('div');
+        footerElement.classList.add('comment__footer');
+        const likeElement = document.createElement('div');
+        likeElement.classList.add('comment__button', 'comment__button--like', 'clearfix');
+        likeElement.dataset.commentid = comment.id;
+        likeElement.id = 'comment_like';
+        const likeIcon = document.createElement('i');
+        likeIcon.classList.add('fa-regular', 'fa-thumbs-up');
+        const likeCount = document.createElement('span');
+        likeCount.classList.add('post__likes');
+        likeCount.textContent = post.likesCount;
+        
+        likeElement.appendChild(likeIcon);
+        likeElement.appendChild(likeCount);
+
+        footerElement.appendChild(likeElement);
+
+
         commentElement.appendChild(commentHeader);
         commentElement.appendChild(commentBody);
+        commentElement.appendChild(footerElement);
 
         commentsContainer.appendChild(commentElement);
     });
@@ -308,16 +328,13 @@ const postOnModal = async (postId) => {
     const postXML = await response.text();
     const post = parsePosts(postXML)[0];
 
-    document.getElementById('modal').style.display = 'block'
-    document.getElementById('modal-overlay').style.display = 'block'
-
     const postContainer = document.getElementById('postFull');
     postContainer.dataset.postid = postId;
     // header
     const headerElement = document.createElement('div');
     headerElement.classList.add('post__header');
     const authorImage = document.createElement('img');
-    authorImage.src = post.authorImage;
+    authorImage.src = (post.authorImage) ? post.authorImage : './img/user.png';
     authorImage.classList.add('post__profile-image');
     const authorName = document.createElement('span');
     authorName.classList.add('post__author');
@@ -375,6 +392,9 @@ const postOnModal = async (postId) => {
     postContainer.appendChild(headerElement);
     postContainer.appendChild(bodyElement);
     postContainer.appendChild(footerElement);
+
+    document.getElementById('modal').classList.add('open');
+    document.getElementById('modal-overlay').style.display = 'block'
 }
 
 const post = async () => {
@@ -405,38 +425,44 @@ const post = async () => {
 // MAIN ON LOAD
 document.addEventListener('DOMContentLoaded', function() {
     const homepage = document.getElementById('homepage');
-    const postPage = document.getElementById('postFull');
+    const profilePage = document.getElementById('profile');
 
     if (homepage) {
         getPostsData();
     }
 
+    if (profilePage) {
+        getPostsData(10, 0, 0, 0);
+    }
+
     document.addEventListener('click', function(event) {
-        if (event.target && event.target.id === 'post__link') {
-            const postId = event.target.dataset.postid;
+        event.stopPropagation();
+        if (event.target && (event.target.id === 'post__link' || event.target.closest('#post__link'))) {
+            const postId = event.target.closest('#post__link').dataset.postid;
             postOnModal(postId);
         }
     });
 
     //A modale aperta, innesca i listener
     document.addEventListener('click', function(event) {
+        const postId = document.getElementById('postFull').dataset.postid;
         if (event.target && event.target.id === 'comments_show_btn') {
-            loadComments(postPage.dataset.postid);
+            loadComments(postId);
         }
 
         if (event.target && event.target.id == 'comment_submit') {
             const comment = document.querySelector(`#comment_input`).value;
             const commentFile = document.querySelector(`#comment_image`).files[0];
-            postComment(postPage.dataset.postid, comment, commentFile);
+            postComment(postId, comment, commentFile);
         }
     });
 
     document.addEventListener('click', function(event) {
         if (event.target && event.target.id === 'modal-overlay') {
             //Chiusura modale
-            document.getElementById('modal').style.display = 'none'
-            document.getElementById('modal-overlay').style.display = 'none'
-            document.getElementById('postFull').replaceChildren()
+            document.getElementById('modal').classList.remove('open');
+            document.getElementById('modal-overlay').style.display = 'none';
+            document.getElementById('postFull').replaceChildren();
             document.querySelector('#comments_show_btn').removeAttribute('style');
             document.querySelector('#comments_list').replaceChildren();
         }
@@ -445,7 +471,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(event) {
         if (event.target && event.target.id === 'load_more') {
             document.querySelector('#load_more').remove();
-            getPostsData(10, 1, 1);
+            const isHomepage = document.getElementById('homepage') ? 1 : 0;
+            getPostsData(10, 1, 1, isHomepage);
         }
     });
 
@@ -457,8 +484,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     document.addEventListener('click', function(event) {
-        if (event.target && event.target.id === 'post_comment') {
-            const postId = event.target.dataset.postid;
+        if (event.target && event.target.id === 'post_comment' || event.target.closest('#post_comment')) {
+            const postId = event.target.closest('#post_comment').dataset.postid;
             goToComment(postId);
         }
 
