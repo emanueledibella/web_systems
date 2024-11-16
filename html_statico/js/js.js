@@ -46,9 +46,9 @@ const parsePosts = (xml) => {
     });
 }
 
-const getPostsData = async (limit= 10, offset = 0, other = 0, homepage = 1) => {
+const getPostsData = async (limit = 10, offset = 0, other = 0, homepage = 1) => {
     const fileToFetch = other ? '/xml/posts2.xml' : '/xml/posts1.xml';
-     const response = await fetch(fileToFetch, 
+    const response = await fetch(fileToFetch, 
         {
             method: 'GET',
             query : {
@@ -59,97 +59,47 @@ const getPostsData = async (limit= 10, offset = 0, other = 0, homepage = 1) => {
     );
     const postsXml = await response.text();
     const posts = parsePosts(postsXml);
-    const postsContainer = homepage ? document.getElementById('homepage') : document.getElementById('profile');
+    const postsContainer = homepage ? $('#homepage') : $('#profile');
+    
     posts.forEach(post => {
-        // container
-        const postElement = document.createElement('div');
-        postElement.dataset.postid = post.id;
-        postElement.classList.add('post');
-        const postLink = document.createElement('a');
-        postLink.classList.add('post__link');
-        postLink.id = `post__link`;
-        postLink.dataset.postid = post.id;
-        // header
-        const postHeader = document.createElement('div');
-        postHeader.classList.add('post__header');
-        const authorImage = document.createElement('img');
-        authorImage.src = (post.authorImage) ? post.authorImage : './img/user.png';
-        authorImage.classList.add('post__profile-image');
-        const authorName = document.createElement('span');
-        authorName.classList.add('post__author');
-        authorName.textContent = post.authorName;
-        const postDateTime = document.createElement('div');
-        postDateTime.classList.add('post__datetime');
-        const date = new Date(post.dateTime);
-        postDateTime.textContent = `Pubblicato il ${date.toLocaleString()}`;
-        postHeader.appendChild(authorImage);
-        postHeader.appendChild(authorName);
-        postHeader.appendChild(postDateTime);
+        const postElement = $('<div>').addClass('post').attr('data-postid', post.id);
+        const postLink = $('<a>').addClass('post__link').attr('id', 'post__link').attr('data-postid', post.id);
 
-        // body
-        const postBody = document.createElement('div');
-        postBody.classList.add('post__body');
-        const postTitle = document.createElement('h2');
-        postTitle.classList.add('post__title');
-        postTitle.textContent = post.title;
-        let postImage;
+        // Header
+        const postHeader = $('<div>').addClass('post__header')
+            .append($('<img>').attr('src', post.authorImage ? post.authorImage : './img/user.png').addClass('post__profile-image'))
+            .append($('<span>').addClass('post__author').text(post.authorName))
+            .append($('<div>').addClass('post__datetime').text(`Pubblicato il ${new Date(post.dateTime).toLocaleString()}`));
+
+        // Body
+        const postBody = $('<div>').addClass('post__body')
+            .append($('<h2>').addClass('post__title').text(post.title));
         if (post.image) {
-            postImage = document.createElement('img');
-            postImage.src = post.image;
-            postImage.classList.add('post__image');
+            postBody.append($('<img>').attr('src', post.image).addClass('post__image'));
         }
-        const postSnippet = document.createElement('p');
-        postSnippet.classList.add('post__snippet');
-        postSnippet.textContent = post.snippet;
-        postBody.appendChild(postTitle);
-        if (post.image) {
-            postBody.appendChild(postImage);
-        }
-        postBody.appendChild(postSnippet);
-        
-        // footer
-        const postFooter = document.createElement('div');
-        postFooter.classList.add('post__footer');
-        //      footer like
-        const postLike = document.createElement('div');
-        postLike.classList.add('post__button', 'post__button--like', 'clearfix');
-        postLike.dataset.postid = post.id;
-        postLike.id = 'post_like';
-        const postLikeIcon = document.createElement('i');
-        postLikeIcon.classList.add('fa-regular', 'fa-thumbs-up');
-        const postLikeCount = document.createElement('span');
-        postLikeCount.classList.add('post__likes');
-        postLikeCount.textContent = post.likesCount;
-        postLike.appendChild(postLikeIcon);
-        postLike.appendChild(postLikeCount);
-        //      footer comment
-        const postComment = document.createElement('div');
-        postComment.classList.add('post__button', 'post__button--comment', 'clearfix');
-        postComment.dataset.postid = post.id;
-        postComment.id = 'post_comment';
-        const postCommentIcon = document.createElement('i');
-        postCommentIcon.classList.add('fa-regular', 'fa-comment');
-        const postCommentCount = document.createElement('span');
-        postCommentCount.classList.add('post__comments');
-        postCommentCount.textContent = post.commentsCount;
-        postComment.appendChild(postCommentIcon);
-        postComment.appendChild(postCommentCount);
+        postBody.append($('<p>').addClass('post__snippet').text(post.snippet));
 
-        postFooter.appendChild(postLike);
-        postFooter.appendChild(postComment);
-
-        postLink.appendChild(postHeader);
+        // Footer
+        const postFooter = $('<div>').addClass('post__footer')
+            //Like
+            .append($('<div>').addClass('post__button post__button--like clearfix').attr('data-postid', post.id).attr('id', 'post_like')
+            .append($('<i>').addClass('fa-regular fa-thumbs-up'))
+            .append($('<span>').addClass('post__likes').text(post.likesCount)))
+            // Comments
+            .append($('<div>').addClass('post__button post__button--comment clearfix').attr('data-postid', post.id).attr('id', 'post_comment')
+            .append($('<i>').addClass('fa-regular fa-comment'))
+            .append($('<span>').addClass('post__comments').text(post.commentsCount)));
         
-        postLink.appendChild(postBody);
-
-        postElement.appendChild(postLink);
-        postElement.appendChild(postFooter);              
+        postLink.append(postHeader, postBody);
+        postElement.append(postLink, postFooter);
         
-        postsContainer.appendChild(postElement);
+        postsContainer.append(postElement);
     });
+
     const btn = `<button class="btn" id="load_more" style="width: 100%;">Carica altri post</button>`;
-    postsContainer.innerHTML += btn;
-}
+    postsContainer.append(btn);
+};
+
 
 const insertLike = async (e) => {
     const postId = e.target.dataset.postid;
@@ -169,17 +119,16 @@ const insertLike = async (e) => {
 }
 
 const goToComment = (id) => {
-    postOnModal(id);
+    showModal(id);
     loadComments(id);
     setTimeout(function(){
         document.querySelector('.comments').scrollIntoView({behavior:"smooth"});
     }, 500); 
 }
 
-
 const search = async (q) => {
     if (q.length >= 3) {
-        // const response = await fetch(`/search?q=${encodeURIComponent(q)}`);
+        // const response = await fetch(/search?q=${encodeURIComponent(q)});
         // const results = await response.json();
 
         const results = [
@@ -210,13 +159,23 @@ const search = async (q) => {
         results.forEach(result => {
             const resultItem = document.createElement('div');
             resultItem.classList.add('search-result-item');
+            resultItem.dataset.postid = result.id;
             
             const resultLink = document.createElement('a');
-            resultLink.href = `/post/${result.id}`;
+            resultLink.classList.add('search-result-link');
             resultLink.textContent = result.title;
             
             resultItem.appendChild(resultLink);
             searchResultsContainer.appendChild(resultItem);
+            });
+
+        document.addEventListener('click', function(event){
+            if (event.target && event.target.classList[0] === 'search-result-link') {
+                const postId = event.target.parentNode.dataset.postid;
+                showModal(postId);
+                $('.search-results').remove();
+                $('#search').val('');
+            }
         });
     }
 }
@@ -244,157 +203,81 @@ const postComment = async (postId, comment, commentFile) => {
 }
 
 const reloadComments = async (postId) => {
-    document.querySelector('#comments_list').innerHTML = '';
+    $('#comments_list').empty();
     loadComments(postId);
 }
 
 const loadComments = async (postId) => {
-    document.querySelector('#comments_show_btn').style.display = 'none';
+    $('#comments_show_btn').hide();
     const response = await fetch(`/xml/${postId}.xml`);
     const postXML = await response.text();
     const comments = parsePosts(postXML)[0].comments;
-    const commentsContainer = document.getElementById('comments_list');
-    comments.forEach(comment => {
-        const commentElement = document.createElement('div');
-        commentElement.classList.add('comment');
-        // Header
-        const commentHeader = document.createElement('div');
-        commentHeader.classList.add('comment__header');
-        const commentAuthorImage = document.createElement('img');
-        commentAuthorImage.src = comment.authorImage;
-        commentAuthorImage.classList.add('comment__profile-image');
-        const commentAuthorName = document.createElement('span');
-        commentAuthorName.classList.add('comment__author');
-        commentAuthorName.textContent = comment.authorName;
-        const commentDateTime = document.createElement('div');
-        commentDateTime.classList.add('comment__datetime');
-        const date = new Date(comment.dateTime);
-        commentDateTime.textContent = `Pubblicato il ${date.toLocaleString()}`;
+    const commentsContainer = $('#comments_list');
 
-        commentHeader.appendChild(commentAuthorImage);
-        commentHeader.appendChild(commentAuthorName);
-        commentHeader.appendChild(commentDateTime);
+    comments.forEach(comment => {
+        const commentElement = $('<div>').addClass('comment');
+
+        // Header
+        const commentHeader = $('<div>').addClass('comment__header')
+            .append($('<img>').attr('src', comment.authorImage).addClass('comment__profile-image'))
+            .append($('<span>').addClass('comment__author').text(comment.authorName))
+            .append($('<div>').addClass('comment__datetime').text(`Pubblicato il ${new Date(comment.dateTime).toLocaleString()}`));
 
         // Body
-        const commentBody = document.createElement('div');
-        commentBody.classList.add('comment__body');
-        let commentImage;
+        const commentBody = $('<div>').addClass('comment__body');
         if (comment.image) {
-            commentImage = document.createElement('img');
-            commentImage.src = comment.image;
-            commentImage.classList.add('comment__image');
+            commentBody.append($('<img>').attr('src', comment.image).addClass('comment__image'));
         }
+        commentBody.append($('<p>').addClass('comment__text').text(comment.text));
 
-        const commentText = document.createElement('p');
-        commentText.classList.add('comment__text');
-        commentText.textContent = comment.text;
+        // Footer
+        const footerElement = $('<div>').addClass('comment__footer');
+        const likeElement = $('<div>').addClass('comment__button comment__button--like clearfix')
+            .attr('data-commentid', comment.id).attr('id', 'comment_like')
+            .append($('<i>').addClass('fa-regular fa-thumbs-up'))
+            .append($('<span>').addClass('post__likes').text(comment.likes));
 
-        if (comment.image) {
-            commentBody.appendChild(commentImage);
-        }
-        commentBody.appendChild(commentText);
-
-        // footer
-        const footerElement = document.createElement('div');
-        footerElement.classList.add('comment__footer');
-        const likeElement = document.createElement('div');
-        likeElement.classList.add('comment__button', 'comment__button--like', 'clearfix');
-        likeElement.dataset.commentid = comment.id;
-        likeElement.id = 'comment_like';
-        const likeIcon = document.createElement('i');
-        likeIcon.classList.add('fa-regular', 'fa-thumbs-up');
-        const likeCount = document.createElement('span');
-        likeCount.classList.add('post__likes');
-        likeCount.textContent = comment.likes;
-        
-        likeElement.appendChild(likeIcon);
-        likeElement.appendChild(likeCount);
-
-        footerElement.appendChild(likeElement);
-
-
-        commentElement.appendChild(commentHeader);
-        commentElement.appendChild(commentBody);
-        commentElement.appendChild(footerElement);
-
-        commentsContainer.appendChild(commentElement);
+        footerElement.append(likeElement);
+        commentElement.append(commentHeader, commentBody, footerElement);
+        commentsContainer.append(commentElement);
     });
-}
+};
 
-const postOnModal = async (postId) => {
-    //Caricamento post nella modale
+const showModal = async (postId) => {
     const response = await fetch(`/xml/${postId}.xml`);
     const postXML = await response.text();
     const post = parsePosts(postXML)[0];
 
-    const postContainer = document.getElementById('postFull');
-    postContainer.dataset.postid = postId;
-    // header
-    const headerElement = document.createElement('div');
-    headerElement.classList.add('post__header');
-    const authorImage = document.createElement('img');
-    authorImage.src = (post.authorImage) ? post.authorImage : './img/user.png';
-    authorImage.classList.add('post__profile-image');
-    const authorName = document.createElement('span');
-    authorName.classList.add('post__author');
-    authorName.textContent = post.authorName;
-    const postDateTime = document.createElement('div');
-    postDateTime.classList.add('post__datetime');
-    const date = new Date(post.dateTime);
-    postDateTime.textContent = `Pubblicato il ${date.toLocaleString()}`;
-    headerElement.appendChild(authorImage);
-    headerElement.appendChild(authorName);
-    headerElement.appendChild(postDateTime)
+    const postContainer = $('#postFull').attr('data-postid', postId);
 
-    // body
-    const bodyElement = document.createElement('div');
-    bodyElement.classList.add('post__body');
-    const titleElement = document.createElement('h2');
-    titleElement.classList.add('post__title');
-    titleElement.textContent = post.title;
-    let imageElement;
+    // Header
+    const headerElement = $('<div>').addClass('post__header')
+        .append($('<img>').attr('src', post.authorImage ? post.authorImage : './img/user.png').addClass('post__profile-image'))
+        .append($('<span>').addClass('post__author').text(post.authorName))
+        .append($('<div>').addClass('post__datetime').text(`Pubblicato il ${new Date(post.dateTime).toLocaleString()}`));
+
+    // Body
+    const bodyElement = $('<div>').addClass('post__body')
+        .append($('<h2>').addClass('post__title').text(post.title));
     if (post.image) {
-        imageElement = document.createElement('img');
-        imageElement.src = post.image;
-        imageElement.classList.add('post__image');
+        bodyElement.append($('<img>').attr('src', post.image).addClass('post__image'));
     }
-    const contentElement = document.createElement('p');
-    contentElement.classList.add('post__content');
-    contentElement.textContent = post.text;
+    bodyElement.append($('<p>').addClass('post__content').text(post.text));
 
-    bodyElement.appendChild(titleElement);
-    if (post.image) {
-        bodyElement.appendChild(imageElement);
-    }
-    bodyElement.appendChild(contentElement);
+    // Footer
+    const footerElement = $('<div>').addClass('post__footer');
+    const likeElement = $('<div>').addClass('post__button post__button--like clearfix')
+        .attr('data-postid', post.id).attr('id', 'post_like')
+        .append($('<i>').addClass('fa-regular fa-thumbs-up'))
+        .append($('<span>').addClass('post__likes').text(post.likesCount));
 
-    // footer
-    const footerElement = document.createElement('div');
-    footerElement.classList.add('post__footer');
+    footerElement.append(likeElement);
 
-    // like
-    const likeElement = document.createElement('div');
-    likeElement.classList.add('post__button', 'post__button--like', 'clearfix');
-    likeElement.dataset.postid = post.id;
-    likeElement.id = 'post_like';
-    const likeIcon = document.createElement('i');
-    likeIcon.classList.add('fa-regular', 'fa-thumbs-up');
-    const likeCount = document.createElement('span');
-    likeCount.classList.add('post__likes');
-    likeCount.textContent = post.likesCount;
-    
-    likeElement.appendChild(likeIcon);
-    likeElement.appendChild(likeCount);
+    postContainer.append(headerElement, bodyElement, footerElement);
 
-    footerElement.appendChild(likeElement);
-
-    postContainer.appendChild(headerElement);
-    postContainer.appendChild(bodyElement);
-    postContainer.appendChild(footerElement);
-
-    document.getElementById('modal').classList.add('open');
-    document.getElementById('modal-overlay').style.display = 'block'
-}
+    $('#modal').addClass('open');
+    $('#modal-overlay').show();
+};
 
 const post = async () => {
     const title = document.querySelector('#post_title').value;
@@ -422,7 +305,7 @@ const post = async () => {
 
 
 // MAIN ON LOAD
-document.addEventListener('DOMContentLoaded', function() {
+$(document).ready(function() {
     const homepage = document.getElementById('homepage');
     const profilePage = document.getElementById('profile');
 
@@ -438,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function() {
         event.stopPropagation();
         if (event.target && (event.target.id === 'post__link' || event.target.closest('#post__link'))) {
             const postId = event.target.closest('#post__link').dataset.postid;
-            postOnModal(postId);
+            showModal(postId);
         }
     });
 
@@ -488,15 +371,13 @@ document.addEventListener('DOMContentLoaded', function() {
             goToComment(postId);
         }
 
-       
-
         if (event.target && event.target.id == 'post') {
             post();
         }
     });
     
     document.getElementById('search').addEventListener('input', async function(event) {
-       search(event.target.value);
+        search(event.target.value);
     });
 
 });
