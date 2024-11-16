@@ -88,32 +88,33 @@
            
             <div class="user_posts" data-userid="1">
                 <h2>I tuoi post </h2>
-                
             </div>
-    </div>
-    <div class="modal-overlay" id="modal-overlay"></div>
+        
+        </div>
+        
+        <div class="modal-overlay" id="modal-overlay"></div>
 
         <div class="modal" id="modal">
-            <div class="post" id="postFull"></div>
-            <div class="comments">
-                <h3 class="comments__title">Commenti</h3>
-                <a class="btn comments_show_btn" id="comments_show_btn">Mostra commenti</a>
-                <div class="comments__list" id="comments_list"></div>
+        <div class="post" id="postFull"></div>
+        <div class="comments">
+            <h3 class="comments__title">Commenti</h3>
+            <a class="btn comments_show_btn" id="comments_show_btn">Mostra commenti</a>
+            <div class="comments__list" id="comments_list"></div>
 
-                <!-- TODO: if userLogged-->
-                <div class="comments__form">
-                    <div class="comments__form__container">
-                        <input type="text" class="comments__input" id="comment_input" placeholder="Commenta...">
-                        <input type="file" id="comment_image" class="comment__file-input" accept="image/*">
-                        <label for="comment_image" class="comments__button--image" id="comment_add_image">
-                            <i class="fa-regular fa-image"></i>
-                        </label>
-                    </div>
-                    <button class="btn comments__button" id="comment_submit">Pubblica</button>
+            <!-- TODO: if userLogged-->
+            <div class="comments__form">
+                <div class="comments__form__container">
+                    <input type="text" class="comments__input" id="comment_input" placeholder="Commenta...">
+                    <input type="file" id="comment_image" class="comment__file-input" accept="image/*">
+                    <label for="comment_image" class="comments__button--image" id="comment_add_image">
+                        <i class="fa-regular fa-image"></i>
+                    </label>
                 </div>
-                <!-- /if userLogged-->
-
+                <button class="btn comments__button" id="comment_submit">Pubblica</button>
             </div>
+            <!-- /if userLogged-->
+
         </div>
+    </div>
 </body>
 </html>
