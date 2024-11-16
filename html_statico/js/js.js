@@ -167,15 +167,13 @@ const search = async (q) => {
             
             resultItem.appendChild(resultLink);
             searchResultsContainer.appendChild(resultItem);
-            });
+        });
 
-        document.addEventListener('click', function(event){
-            if (event.target && event.target.classList[0] === 'search-result-link') {
-                const postId = event.target.parentNode.dataset.postid;
-                showModal(postId);
-                $('.search-results').remove();
-                $('#search').val('');
-            }
+        $('.search-result-item').on('click', function(event){
+            let postId = $(this).data('postid');
+            showModal(postId);
+            $('.search-results').remove();
+            $('#search').val('');
         });
     }
 }
@@ -248,7 +246,7 @@ const showModal = async (postId) => {
     const postXML = await response.text();
     const post = parsePosts(postXML)[0];
 
-    const postContainer = $('#postFull').attr('data-postid', postId);
+    const postContainer = $('#postFull').attr('data-postid', postId);//.empty();
 
     // Header
     const headerElement = $('<div>').addClass('post__header')
@@ -280,9 +278,9 @@ const showModal = async (postId) => {
 };
 
 const post = async () => {
-    const title = document.querySelector('#post_title').value;
-    const content = document.querySelector('#post_text').value;
-    const image = document.querySelector('#post_image').files[0];
+    const title = $('#post_title').val();
+    const content = $('#post_text').val();
+    const image = $('#post_image').files[0];
 
     if (!title || !content) {
         alert('Compila almeno il titolo e il contenuto del post');
@@ -306,8 +304,8 @@ const post = async () => {
 
 // MAIN ON LOAD
 $(document).ready(function() {
-    const homepage = document.getElementById('homepage');
-    const profilePage = document.getElementById('profile');
+    const homepage = $('#homepage');
+    const profilePage = $('#profile');
 
     if (homepage) {
         getPostsData();
@@ -344,7 +342,7 @@ $(document).ready(function() {
             //Chiusura modale
             document.getElementById('modal').classList.remove('open');
             document.getElementById('modal-overlay').style.display = 'none';
-            document.getElementById('postFull').replaceChildren();
+            $('#postFull').empty();
             document.querySelector('#comments_show_btn').removeAttribute('style');
             document.querySelector('#comments_list').replaceChildren();
         }
