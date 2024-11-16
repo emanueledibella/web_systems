@@ -63,7 +63,7 @@ const getPostsData = async (limit = 10, offset = 0, other = 0, homepage = 1) => 
     
     posts.forEach(post => {
         const postElement = $('<div>').addClass('post').attr('data-postid', post.id);
-        const postLink = $('<a>').addClass('post__link').attr('id', 'post__link').attr('data-postid', post.id);
+        const postLink = $('<a>').addClass('post__link').attr('data-postid', post.id);
 
         // Header
         const postHeader = $('<div>').addClass('post__header')
@@ -82,11 +82,11 @@ const getPostsData = async (limit = 10, offset = 0, other = 0, homepage = 1) => 
         // Footer
         const postFooter = $('<div>').addClass('post__footer')
             //Like
-            .append($('<div>').addClass('post__button post__button--like clearfix').attr('data-postid', post.id).attr('id', 'post_like')
+            .append($('<div>').addClass('post__button post__button--like clearfix post_like').attr('data-postid', post.id)
             .append($('<i>').addClass('fa-regular fa-thumbs-up'))
             .append($('<span>').addClass('post__likes').text(post.likesCount)))
             // Comments
-            .append($('<div>').addClass('post__button post__button--comment clearfix').attr('data-postid', post.id).attr('id', 'post_comment')
+            .append($('<div>').addClass('post__button post__button--comment clearfix post_comment').attr('data-postid', post.id)
             .append($('<i>').addClass('fa-regular fa-comment'))
             .append($('<span>').addClass('post__comments').text(post.commentsCount)));
         
@@ -230,8 +230,8 @@ const loadComments = async (postId) => {
 
         // Footer
         const footerElement = $('<div>').addClass('comment__footer');
-        const likeElement = $('<div>').addClass('comment__button comment__button--like clearfix')
-            .attr('data-commentid', comment.id).attr('id', 'comment_like')
+        const likeElement = $('<div>').addClass('comment__button comment__button--like clearfix comment_like')
+            .attr('data-commentid', comment.id)
             .append($('<i>').addClass('fa-regular fa-thumbs-up'))
             .append($('<span>').addClass('post__likes').text(comment.likes));
 
@@ -264,8 +264,8 @@ const showModal = async (postId) => {
 
     // Footer
     const footerElement = $('<div>').addClass('post__footer');
-    const likeElement = $('<div>').addClass('post__button post__button--like clearfix')
-        .attr('data-postid', post.id).attr('id', 'post_like')
+    const likeElement = $('<div>').addClass('post__button post__button--like clearfix post_like')
+        .attr('data-postid', post.id)
         .append($('<i>').addClass('fa-regular fa-thumbs-up'))
         .append($('<span>').addClass('post__likes').text(post.likesCount));
 
@@ -317,8 +317,8 @@ $(document).ready(function() {
 
     document.addEventListener('click', function(event) {
         event.stopPropagation();
-        if (event.target && (event.target.id === 'post__link' || event.target.closest('#post__link'))) {
-            const postId = event.target.closest('#post__link').dataset.postid;
+        if (event.target && (event.target.class === 'post__link' || event.target.closest('.post__link'))) {
+            const postId = event.target.closest('.post__link').dataset.postid;
             showModal(postId);
         }
     });
@@ -358,14 +358,14 @@ $(document).ready(function() {
 
 
     document.addEventListener('click', function(event) {
-        if (event.target && event.target.id === 'post_like') {
+        if (event.target && event.target.classList.contains('post_like')) {
             insertLike(event);
         }
     });
     
     document.addEventListener('click', function(event) {
-        if (event.target && event.target.id === 'post_comment' || event.target.closest('#post_comment')) {
-            const postId = event.target.closest('#post_comment').dataset.postid;
+        if (event.target && event.target.classList.contains('post_comment')) {
+            const postId = event.target.closest('.post_comment').dataset.postid;
             goToComment(postId);
         }
 
