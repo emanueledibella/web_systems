@@ -1,10 +1,10 @@
-package com.controllers;
+package com.web_systems.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.services.PostsService;
+import com.web_systems.services.PostsService;
 
 
 @RestController
