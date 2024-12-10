@@ -45,4 +45,18 @@ public class LikesService {
             return "Error inserting like.";
         }
     }
+
+    public String deleteLike(int userId, int postId) {
+        try {
+            String sql = "DELETE FROM likes WHERE user_id = ? and post_id = ?";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1, userId);
+            pstmt.setInt(2, postId);
+            pstmt.executeUpdate();
+            return "Like deleted successfully!";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error deleting like.";
+        }
+    }
 }
