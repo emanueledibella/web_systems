@@ -4,13 +4,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.web_systems.services.PostsService;
+
+import com.web_systems.repository.PostsRepository;
 
 
 @RestController
 public class PostController {
 
-    PostsService postsService = new PostsService();
+    PostsRepository postsRepository = new PostsRepository();
     
     @PostMapping("post")
     public String createPost(
@@ -19,17 +20,17 @@ public class PostController {
         @RequestParam(value = "content") String content,
         @RequestParam(value = "image") String image
     ) {
-        return this.postsService.createPost(userId, title, content, image);
+        return this.postsRepository.createPost(userId, title, content, image);
     }
 
     @GetMapping("posts")
     public String getPosts(@RequestParam(value = "offset") int offset) {
-        return this.postsService.getPosts(offset, null);
+        return this.postsRepository.getPosts(offset, null);
     }
 
     @GetMapping("search")
     public String searchPosts(@RequestParam(value = "search") String search) {
-        return this.postsService.getPosts(0, search);
+        return this.postsRepository.getPosts(0, search);
     }
 
 }

@@ -1,17 +1,17 @@
-package com.web_systems.services;
+package com.web_systems.repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class PostsService {
+public class PostsRepository {
 
     private Connection connection;
-    private LikesService likesService = new LikesService();
-    private CommentsService commentsService = new CommentsService();
+    private LikesRepository likesRepository = new LikesRepository();
+    private CommentsRepository commentsRepository = new CommentsRepository();
 
-    public PostsService() {
+    public PostsRepository() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/web_systems", "root", "password");
@@ -55,7 +55,7 @@ public class PostsService {
             while (rs.next()) {
                 String authorName = rs.getString("name") + " " + rs.getString("surname");
                 String profileImage = rs.getString("image");
-                int likesCount = likesService.getLikesCount(rs.getInt("id"));
+                int likesCount = likesRepository.getLikesCount(rs.getInt("id"));
 
                 xmlResult.append("<Post>");
                 xmlResult.append("<Id>").append(rs.getInt("id")).append("</Id>");
@@ -67,7 +67,7 @@ public class PostsService {
                 xmlResult.append("<MessageImage>").append(rs.getString("image")).append("</MessageImage>");
                 xmlResult.append("<Likes>").append(likesCount).append("</Likes>");
                 //comments
-                xmlResult.append(this.commentsService.getComments(rs.getInt("id")));
+                xmlResult.append(this.commentsRepository.getComments(rs.getInt("id")));
                 xmlResult.append("</Post>");
             }
 

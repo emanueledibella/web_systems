@@ -1,4 +1,4 @@
-package com.web_systems.services;
+package com.web_systems.repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,11 +7,11 @@ import java.sql.ResultSet;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.json.JSONObject;
 
-public class UsersService {
+public class UsersRepository {
 
     private Connection connection;
 
-    public UsersService() {
+    public UsersRepository() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/web_systems", "root", "password");

@@ -1,15 +1,15 @@
-package com.web_systems.services;
+package com.web_systems.repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class CommentsService {
+public class CommentsRepository {
     
     private Connection connection;
 
-    public CommentsService() {
+    public CommentsRepository() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/web_systems", "root", "password");
