@@ -1,9 +1,21 @@
 version: "3.9"
 
 services:
-  server:
-    image: httpd:2.4
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "82:80"
+      - "8080:8080"
     volumes:
-      - ./html_statico:/usr/local/apache2/htdocs/
+      - .:/data
+  
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: web_system
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database.sql:/docker-entrypoint-initdb.d/init.sql

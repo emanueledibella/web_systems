@@ -78,4 +78,40 @@ public class PostsRepository {
             return "Error retrieving posts.";
         }
     }
+
+    public String getPost(int postId) {
+        try {
+            String sql = "SELECT * FROM posts INNER JOIN users ON users.id = posts.user_id WHERE posts.id = ?";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1, postId);
+            ResultSet rs = pstmt.executeQuery();
+
+            StringBuilder xmlResult = new StringBuilder();
+            xmlResult.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+            xmlResult.append("<Post>");
+
+            if (rs.next()) {
+                String authorName = rs.getString("name") + " " + rs.getString("surname");
+                String profileImage = rs.getString("image");
+                int likesCount = likesRepository.getLikesCount(rs.getInt("id"));
+
+                xmlResult.append("<Id>").append(rs.getInt("id")).append("</Id>");
+                xmlResult.append("<AuthorName>").append(authorName).append("</AuthorName>");
+                xmlResult.append("<ProfileImage>").append(profileImage).append("</ProfileImage>");
+                xmlResult.append("<DateTime>").append(rs.getTimestamp("created_at").toInstant().toString()).append("</DateTime>");
+                xmlResult.append("<PostTitle>").append(rs.getString("title")).append("</PostTitle>");
+                xmlResult.append("<MessageText>").append(rs.getString("content")).append("</MessageText>");
+                xmlResult.append("<MessageImage>").append(rs.getString("image")).append("</MessageImage>");
+                xmlResult.append("<Likes>").append(likesCount).append("</Likes>");
+                //comments
+                xmlResult.append(this.commentsRepository.getComments(rs.getInt("id")));
+            }
+
+            xmlResult.append("</Post>");
+            return xmlResult.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error retrieving post.";
+        }
+    }
 }
