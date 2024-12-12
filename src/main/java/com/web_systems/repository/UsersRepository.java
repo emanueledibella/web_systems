@@ -1,9 +1,14 @@
 package com.web_systems.repository;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Properties;
+import java.io.InputStream;
+import java.util.Properties;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.json.JSONObject;
 
@@ -14,7 +19,21 @@ public class UsersRepository {
     public UsersRepository() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/web_systems", "root", "password");
+            Properties properties = new Properties();
+            try (InputStream input = getClass().getClassLoader().getResourceAsStream("application.properties")) {
+                if (input == null) {
+                    System.out.println("Sorry, unable to find application.properties");
+                    return;
+                }
+                properties.load(input);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            String url = properties.getProperty("db.url");
+            String username = properties.getProperty("db.username");
+            String password = properties.getProperty("db.password");
+
+            connection = DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
             e.printStackTrace();
         }

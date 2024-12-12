@@ -14,13 +14,6 @@ public class WebSystemsApplication {
 		SpringApplication.run(WebSystemsApplication.class, args);
 	}
 
-	@GetMapping("/")
-    public ModelAndView index() {
-		ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index.html");
-        return modelAndView;
-    }
-
 	@GetMapping("login")
     public ModelAndView login() {
 		ModelAndView modelAndView = new ModelAndView();

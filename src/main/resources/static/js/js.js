@@ -46,13 +46,12 @@ const parsePosts = (xml) => {
     });
 }
 
-const getPostsData = async (limit = 10, offset = 0, other = 0, homepage = 1) => {
-    const fileToFetch = other ? '/xml/posts2.xml' : '/xml/posts1.xml';
+const getPostsData = async (offset = 0, homepage = 1) => {
+    const url = '/posts/';
     const response = await fetch(fileToFetch, 
         {
             method: 'GET',
             query : {
-                limit,
                 offset
             }
         }
@@ -312,7 +311,7 @@ $(document).ready(function() {
     }
 
     if (profilePage) {
-        getPostsData(10, 0, 0, 0);
+        getPostsData(0, 0);
     }
 
     document.addEventListener('click', function(event) {
@@ -352,7 +351,7 @@ $(document).ready(function() {
         if (event.target && event.target.id === 'load_more') {
             document.querySelector('#load_more').remove();
             const isHomepage = document.getElementById('homepage') ? 1 : 0;
-            getPostsData(10, 1, 1, isHomepage);
+            getPostsData(1, 1, isHomepage);
         }
     });
 
